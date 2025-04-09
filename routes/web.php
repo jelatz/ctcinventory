@@ -7,8 +7,10 @@ use App\Http\Controllers\Auth\UserController;
 // Route::inertia('/', 'Home')->name('home');
 
 Route::middleware('guest')->group(function () {
-    Route::inertia('/', 'Login')->name('login');
+    Route::inertia('/', 'Auth/Login')->name('login');
     Route::post('/login', [UserController::class, 'login'])->name('login.post');
+    Route::inertia('/register', 'Auth/Register')->name('register');
+    Route::post('/register', [UserController::class, 'register'])->name('register.post');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
