@@ -6,6 +6,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -23,7 +24,7 @@ class UserService
             'password' => 'string|required',
         ]);
         $user = $this->userRepository->findByUsername($validated['username']);
-        if ($user) {
+        if ($user && Hash::check($validated['password'], $user->password)) {
             Auth::login($user);
             return true;
         }

@@ -33,7 +33,7 @@
                 />
             </div>
             <p v-if="form.errors.username" class="text-red-500 mt-2">
-                {{ form.errors.username }}
+                {{ form.errors.password }}
             </p>
 
             <!-- remember me -->
