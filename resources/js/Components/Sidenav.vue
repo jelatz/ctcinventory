@@ -1,10 +1,10 @@
 <!-- Sidenav.vue -->
 <template>
     <div
-        class="bg-blue-950 text-white sidenav"
+        class="bg-blue-950 text-white sidenav overflow-hidden transition-all duration-600 ease-in-out"
         :class="isShown ? 'w-96' : 'w-0'"
     >
-        <div class="flex justify-center flex-col p-5 items-center">
+        <div class="flex justify-center flex-col p-5 items-center w-full">
             <img src="" alt="Calltek Logo" />
             <p class="mt-5">Calltek Inc.</p>
         </div>

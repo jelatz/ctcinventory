@@ -4,8 +4,18 @@
         <!-- Pass the toggleSidenav method to the slot -->
         <Sidenav :isShown="isShown" />
         <div class="w-full">
+            <!-- Wrap everything in a single root element -->
+            <div class="w-full shadow-lg px-3 py-2">
+                <button
+                    type="button"
+                    class="cursor-pointer"
+                    @click="toggleSidenav"
+                >
+                    <fa icon="fa-solid fa-bars" size="lg" />
+                </button>
+            </div>
             <!-- Use the scoped slot to pass toggleSidenav method -->
-            <slot :toggleSidenav="toggleSidenav" />
+            <slot />
         </div>
     </div>
 </template>
