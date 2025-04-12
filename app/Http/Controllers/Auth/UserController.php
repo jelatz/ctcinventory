@@ -17,6 +17,11 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function showProfile()
+    {
+        return Inertia::render('Auth/Profile');
+    }
+
     public function login(Request $request)
     {
         if ($this->userService->login($request)) {

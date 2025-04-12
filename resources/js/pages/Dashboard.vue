@@ -1,14 +1,5 @@
 <template>
-    <div>
-        <Link
-            :href="route('logout')"
-            method="post"
-            as="button"
-            class="text-black mt-10"
-        >
-            Logout
-        </Link>
-    </div>
+    <div></div>
 </template>
 
 <script setup>
