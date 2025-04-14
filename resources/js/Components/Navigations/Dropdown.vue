@@ -1,6 +1,6 @@
 <template>
     <div :class="isShow ? 'block' : 'hidden'">
-        <slot />
+        <h1>hey</h1>
     </div>
 </template>
 

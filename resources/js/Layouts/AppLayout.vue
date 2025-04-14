@@ -10,8 +10,8 @@
 
 <script setup>
 import { ref } from "vue";
-import Sidenav from "@/Components/Sidenav.vue";
-import Topnav from "@/Components/Topnav.vue";
+import Sidenav from "@/Components/Navigations/Sidenav.vue";
+import Topnav from "@/Components/Navigations/Topnav.vue";
 
 const isShown = ref(true);
 

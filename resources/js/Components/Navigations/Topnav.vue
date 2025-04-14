@@ -15,10 +15,11 @@
             >
                 <fa icon="fa-solid fa-caret-down" size="lg" />
             </button>
-            <!-- Dropdown -->
-            <Dropdown
-                :isShow="isShow"
+
+            <!-- Profile Dropdown -->
+            <div
                 class="absolute -bottom-[5rem] w-44 right-1 border shadow-lg rounded-lg bg-slate-100"
+                :class="isShow ? 'block' : 'hidden'"
             >
                 <Link
                     :href="route('profile')"
@@ -33,14 +34,13 @@
                 >
                     Logout
                 </Link>
-            </Dropdown>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import Dropdown from "@/Components/Dropdown.vue";
 const emit = defineEmits(["toggleSidenav"]);
 
 const toggleSidenav = () => {
