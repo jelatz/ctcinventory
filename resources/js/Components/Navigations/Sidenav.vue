@@ -1,67 +1,81 @@
 <!-- Sidenav.vue -->
 <template>
     <div
-        class="bg-blue-950 text-white sidenav overflow-hidden transition-all duration-600 ease-in-out"
-        :class="isShown ? 'w-96' : 'w-0'"
+        class="bg-blue-950 text-white sidenav overflow-hidden transition-all duration-600 ease-in-out text-nowrap"
+        :class="isShown ? 'w-96' : 'w-14'"
     >
-        <!-- Logo and company name -->
-        <div
-            class="flex justify-center flex-col p-5 items-center w-inherit text-nowrap"
-        >
+        <div class="flex justify-center flex-col p-5 items-center">
             <img src="" alt="Calltek Logo" />
             <p class="mt-5 w-full text-center">Calltek Inc.</p>
         </div>
-        <!-- Navigations -->
-        <div
-            class="flex flex-col justify-center items-center mt-5 navigations w-inherit text-nowrap"
-        >
+
+        <div class="flex flex-col justify-center items-center mt-5 text-nowrap">
             <Link
                 :href="route('dashboard')"
-                class="relative hover:bg-[#e3e2e2] hover:transition-[background-color 0.4s] hover:text-[#162556] w-full text-left py-3 pl-16"
+                class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block text-nowrap"
             >
-                <span class="absolute left-3">{{ faDashboard }}</span>
+                <span :class="['absolute', isShown ? 'left-5' : 'left-6']">{{
+                    faDashboard
+                }}</span>
                 Dashboard
             </Link>
             <NavButton
                 buttonValue="Users"
                 faIcon="U"
                 buttonID="users"
-                @click="toggleUsersOptions"
+                :isOpen="openMenu === 'users'"
+                @toggle="toggleMenu"
+                :subMenuToggle="subMenuToggle"
             />
             <NavButton
                 buttonValue="Categories"
                 faIcon="C"
-                @click="toggleCategoriesOptions"
+                buttonID="categories"
+                :isOpen="openMenu === 'categories'"
+                @toggle="toggleMenu"
+                :subMenuToggle="subMenuToggle"
             />
             <NavButton
                 buttonValue="Items"
                 faIcon="I"
-                @click="toggleItemsOptions"
+                buttonID="items"
+                :isOpen="openMenu === 'items'"
+                @toggle="toggleMenu"
+                :subMenuToggle="subMenuToggle"
             />
             <NavButton
                 buttonValue="Transactions"
                 faIcon="T"
-                @click="toggleTransactionsOptions"
+                buttonID="transactions"
+                :isOpen="openMenu === 'transactions'"
+                @toggle="toggleMenu"
+                :subMenuToggle="subMenuToggle"
             />
-            <Dropdown :isShow="isShow" />
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import NavButton from "@/Components/Navigations/NavButton.vue";
-import Dropdown from "@/Components/Navigations/Dropdown.vue";
-defineProps({
+
+const props = defineProps({
     isShown: Boolean,
 });
 
+const subMenuToggle = ref(props.isShown);
+
+watch(
+    () => props.isShown,
+    (newVal) => {
+        subMenuToggle.value = newVal;
+    }
+);
+
 const faDashboard = ref("D");
-const isShow = ref(false);
-const toggleUsersOptions = () => {
-    isShow.value = !isShow.value;
-    $("#users").val("yes");
+const openMenu = ref(null);
+
+const toggleMenu = (id) => {
+    openMenu.value = openMenu.value === id ? null : id;
 };
 </script>
-
-<style scoped></style>
