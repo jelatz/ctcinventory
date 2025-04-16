@@ -45,11 +45,12 @@ import { defineProps } from "vue";
 
 defineProps({
     buttonValue: String,
-    faIcon: String,
+    faIcon: Array,
     buttonID: String,
     isOpen: Boolean,
     subMenuToggle: Boolean,
     route: String,
     subLinks: Array,
+    faSize:String,
 });
 </script>

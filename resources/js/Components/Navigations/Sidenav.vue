@@ -21,7 +21,7 @@
                 :href="route('dashboard')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
             >
-                <span class="absolute left-4">{{ faDashboard }}</span>
+                <span class="absolute left-4"><fa icon="fa-solid fa-house" size="lg"></fa></span>
                 Dashboard
             </Link>
             <NavButton
@@ -30,12 +30,6 @@
                 :faSize="'lg'"
                 buttonID="users"
                 :isOpen="openMenu === 'users'"
-                @toggle="toggleMenu"
-                :subMenuToggle="subMenuToggle"
-                :subLinks="[
-                    { name: 'All Users', route: '/dashboard' },
-                    { name: 'Create User', route: '/profile' },
-                ]"
             />
             <NavButton
                 buttonValue="Categories"
