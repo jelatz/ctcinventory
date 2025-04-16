@@ -24,7 +24,7 @@
         <div
             :class="[
                 'overflow-hidden bg-[#222f57] w-full transition-all duration-600 ease-in-out',
-                isOpen ? 'max-h-40' : 'max-h-0 py-0',
+                isOpen ? 'max-h-80' : 'max-h-0 py-0',
             ]"
         >
             <!-- Loop over submenu links -->
@@ -51,6 +51,6 @@ defineProps({
     subMenuToggle: Boolean,
     route: String,
     subLinks: Array,
-    faSize:String,
+    faSize: String,
 });
 </script>

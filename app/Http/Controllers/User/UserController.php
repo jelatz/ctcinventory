@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
@@ -17,9 +17,13 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function index()
+    {
+        return Inertia::render('Users/Index');
+    }
     public function showProfile()
     {
-        return Inertia::render('Auth/Profile');
+        return Inertia::render('Users/Profile');
     }
 
     public function login(Request $request)
