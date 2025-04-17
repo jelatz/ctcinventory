@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/item-assignment', [TransactionController::class, 'itemAssignment'])->name('items.assignment');
     Route::get('/item-return', [TransactionController::class, 'itemReturn'])->name('items.return');
     Route::get('/item-transfer', [TransactionController::class, 'itemTransfer'])->name('items.transfer');
+    Route::get('/item-disposal', [TransactionController::class, 'itemDisposal'])->name('items.disposal');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

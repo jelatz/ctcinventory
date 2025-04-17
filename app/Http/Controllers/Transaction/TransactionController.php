@@ -28,4 +28,9 @@ class TransactionController extends Controller
     {
         return inertia('Transaction/ItemsTransfer');
     }
+
+    public function itemDisposal()
+    {
+        return inertia('Transaction/ItemsDisposal');
+    }
 }

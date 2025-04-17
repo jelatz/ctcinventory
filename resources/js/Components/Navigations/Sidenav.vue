@@ -2,10 +2,14 @@
 <template>
     <div
         class="bg-blue-950 text-white sidenav overflow-hidden transition-all duration-600 ease-in-out text-nowrap"
-        :class="isShown ? 'w-96' : 'w-14'"
+        :class="isShown ? 'w-96' : 'w-0'"
     >
-        <div class="flex justify-center flex-col p-5 items-center">
-            <img src="" alt="Calltek Logo" />
+        <div class="flex justify-center flex-col py-5 items-center">
+            <img
+                :src="`/storage/ctc_logo.png`"
+                alt="Calltek logo"
+                class="w-24 h-24"
+            />
             <p
                 :class="[
                     'mt-5 w-full text-center',
@@ -75,8 +79,7 @@
                     },
                     { name: 'Item Return', route: route('items.return') },
                     { name: 'Item Transfer', route: route('items.transfer') },
-                    { name: 'Item Adjustment', route: '#' },
-                    { name: 'Item Disposal', route: '#' },
+                    { name: 'Item Disposal', route: route('items.disposal') },
                 ]"
             />
         </div>
@@ -100,7 +103,6 @@ watch(
     }
 );
 
-const faDashboard = ref("D");
 const openMenu = ref(null);
 
 const toggleMenu = (id) => {

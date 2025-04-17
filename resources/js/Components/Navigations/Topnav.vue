@@ -7,7 +7,7 @@
         </button>
         <div class="flex justify-center items-center space-x-2 relative">
             <img src="" alt="profile picture" class="rounded-full w-5 h-5" />
-            <p>Cher</p>
+            <p>{{ $page.props.auth.user.username }}</p>
             <button
                 type="button"
                 class="cursor-pointer"
