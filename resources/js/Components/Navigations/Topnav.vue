@@ -6,7 +6,11 @@
             <fa icon="fa-solid fa-bars" size="lg" />
         </button>
         <div class="flex justify-center items-center space-x-2 relative">
-            <img src="" alt="profile picture" class="rounded-full w-5 h-5" />
+            <img
+                :src="$page.props.auth.profile - pic"
+                alt="profile picture"
+                class="rounded-full w-5 h-5"
+            />
             <p>{{ $page.props.auth.user.username }}</p>
             <button
                 type="button"

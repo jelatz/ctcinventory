@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('employee_id')->unique();
             $table->string('username')->unique();
             $table->string('real_name');
+            $table->string('profile_picture')->nullable();
             $table->string('password');
             $table->string('email')->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');

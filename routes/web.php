@@ -7,9 +7,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Transaction\TransactionController;
+use Illuminate\Support\Facades\Hash;
 
 // Route::inertia('/', 'Home')->name('home');
-
+// echo bcrypt('admin123');
 Route::middleware('guest')->group(function () {
     Route::inertia('/', 'Auth/Login')->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');

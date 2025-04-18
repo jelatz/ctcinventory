@@ -24,10 +24,11 @@ class UserService
             'password' => 'string|required',
         ]);
         $user = $this->userRepository->findByUsername($validated['username']);
-        if ($user && Hash::check($validated['password'], $user->password)) {
-            Auth::login($user);
+        // if ($user && Hash::check($validated['password'], $user->password)) {
+        if (Auth::login($user)) {
             return true;
         }
+        // }
         return false;
     }
 
