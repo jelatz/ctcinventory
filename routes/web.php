@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Transaction\TransactionController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Hash;
 
 // Route::inertia('/', 'Home')->name('home');
@@ -17,14 +18,18 @@ Route::middleware('guest')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
-    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
     Route::get('/item-assignment', [TransactionController::class, 'itemAssignment'])->name('items.assignment');
     Route::get('/item-return', [TransactionController::class, 'itemReturn'])->name('items.return');
     Route::get('/item-transfer', [TransactionController::class, 'itemTransfer'])->name('items.transfer');
     Route::get('/item-disposal', [TransactionController::class, 'itemDisposal'])->name('items.disposal');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
+    Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('update.profile');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

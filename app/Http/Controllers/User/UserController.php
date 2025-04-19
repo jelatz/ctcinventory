@@ -21,21 +21,6 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Index');
     }
-    public function showProfile()
-    {
-        return Inertia::render('Users/Profile');
-    }
-
-    public function login(Request $request)
-    {
-        if ($this->userService->login($request)) {
-            return Inertia::location(route('dashboard'));
-        }
-
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
-    }
 
     public function logout(Request $request)
     {

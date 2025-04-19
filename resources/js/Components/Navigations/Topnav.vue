@@ -7,7 +7,7 @@
         </button>
         <div class="flex justify-center items-center space-x-2 relative">
             <img
-                :src="$page.props.auth.profile - pic"
+                :src="$page.props.auth.profile_picture"
                 alt="profile picture"
                 class="rounded-full w-5 h-5"
             />
@@ -28,6 +28,7 @@
                 <Link
                     :href="route('profile')"
                     class="w-full block py-1 px-5 hover:bg-slate-300"
+                    @click="closeDropdown"
                     >Account Settings</Link
                 >
                 <Link
