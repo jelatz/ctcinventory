@@ -34,6 +34,7 @@
                 <Link
                     :href="route('logout')"
                     method="post"
+                    type="button"
                     as="button"
                     class="block w-full py-1 px-5 hover:bg-slate-300 cursor-pointer"
                 >

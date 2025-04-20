@@ -25,6 +25,10 @@
                 @click="$emit('close-dropdown')"
                 :href="route('dashboard')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
+                :class="{
+                    'bg-[#e2e2e2] text-[#162556]':
+                        $page.component === 'Dashboard',
+                }"
             >
                 <span class="absolute left-4"
                     ><fa icon="fa-solid fa-house" size="lg"></fa
@@ -35,6 +39,10 @@
                 @click="$emit('close-dropdown')"
                 :href="route('users.index')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
+                :class="{
+                    'bg-slate-100 text-[#162556]':
+                        $page.component === 'Users/Index',
+                }"
             >
                 <span class="absolute left-4"
                     ><fa icon="fa-solid fa-user" size="lg"></fa
@@ -45,6 +53,10 @@
                 @click="$emit('close-dropdown')"
                 :href="route('category.index')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
+                :class="{
+                    'bg-[#e2e2e2] text-[#162556]':
+                        $page.component === 'Category/Index',
+                }"
             >
                 <span class="absolute left-4"
                     ><fa icon="fa-solid fa-layer-group" size="lg"></fa
@@ -55,6 +67,10 @@
                 @click="$emit('close-dropdown')"
                 :href="route('items.index')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
+                :class="{
+                    'bg-[#e2e2e2] text-[#162556]':
+                        $page.component === 'Item/Index',
+                }"
             >
                 <span class="absolute left-4"
                     ><fa icon="fa-solid fa-box" size="lg"></fa
@@ -76,10 +92,23 @@
                     {
                         name: 'Item Assignment',
                         route: route('items.assignment'),
+                        component: 'Transaction/ItemsAssignment',
                     },
-                    { name: 'Item Return', route: route('items.return') },
-                    { name: 'Item Transfer', route: route('items.transfer') },
-                    { name: 'Item Disposal', route: route('items.disposal') },
+                    {
+                        name: 'Item Return',
+                        route: route('items.return'),
+                        component: 'Transaction/ItemsReturn',
+                    },
+                    {
+                        name: 'Item Transfer',
+                        route: route('items.transfer'),
+                        component: 'Transaction/ItemsTransfer',
+                    },
+                    {
+                        name: 'Item Disposal',
+                        route: route('items.disposal'),
+                        component: 'Transaction/ItemsDisposal',
+                    },
                 ]"
             />
         </div>

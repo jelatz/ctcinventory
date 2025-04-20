@@ -33,6 +33,10 @@
                 :key="index"
                 :href="link.route"
                 class="block w-full text-white hover:text-[#e3e2e2] hover:bg-blue-900 py-3 pl-16"
+                :class="{
+                    '!bg-[#e2e2e2] !text-[#162556]':
+                        $page.component === link.component,
+                }"
             >
                 {{ link.name }}
             </Link>
