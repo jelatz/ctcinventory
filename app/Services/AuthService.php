@@ -33,4 +33,15 @@ class AuthService
         }
         return false;
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return Inertia::location(route('login'));
+    }
 }

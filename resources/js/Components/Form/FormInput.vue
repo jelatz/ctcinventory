@@ -1,6 +1,6 @@
 <template>
     <div class="mb-4">
-        <label :for="labelFor" class="block mb-1 font-semibold">
+        <label :for="labelFor" class="block mb-1 font-semibold text-md">
             {{ formLabel }}
         </label>
         <input

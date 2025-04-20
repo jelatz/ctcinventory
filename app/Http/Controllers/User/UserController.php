@@ -21,10 +21,4 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Index');
     }
-
-    public function logout(Request $request)
-    {
-        $this->userService->logout($request);
-        return Inertia::location(route('login'));
-    }
 }

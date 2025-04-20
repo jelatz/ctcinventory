@@ -26,4 +26,11 @@ class AuthController extends Controller
             'username' => 'The provided credentials do not match our records.',
         ]);
     }
+
+
+    public function logout(Request $request)
+    {
+        $this->authService->logout($request);
+        return Inertia::location(route('login'));
+    }
 }

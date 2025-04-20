@@ -122,6 +122,7 @@
                             labelFor="status"
                             inputType="text"
                             v-model="updateProfile.status"
+                            v-if="$page.props.auth.user.role_id == 0"
                         />
                     </div>
                     <button
