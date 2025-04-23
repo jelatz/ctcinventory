@@ -6,7 +6,7 @@
     >
         <div class="flex justify-center flex-col py-5 items-center">
             <img
-                :src="`/storage/images/ctc_logo.png`"
+                :src="`/storage/ctc_logo.png`"
                 alt="Calltek logo"
                 class="w-24 h-24"
             />

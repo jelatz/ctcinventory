@@ -4,8 +4,8 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th
-                        v-for="(header, index) in headers"
-                        :key="index"
+                        v-for="(header, headerIndex) in headers"
+                        :key="headerIndex"
                         class="text-left px-4 py-2 border-b"
                     >
                         {{ header }}

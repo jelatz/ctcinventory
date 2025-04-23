@@ -80,7 +80,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Table from "@/Components/Dashboard/Table.vue";
+import Table from "@/Components/Table.vue";
 import DashboardCard from "@/Components/Dashboard/DashboardCard.vue";
 
 const tableSets = {
