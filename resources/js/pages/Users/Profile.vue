@@ -10,7 +10,11 @@
                 Change Password
             </button>
             <!-- Modal For Change Password -->
-            <Modal :isOpen="showModal" @close="showModal = false">
+            <Modal
+                :isOpen="showModal"
+                @close="showModal = false"
+                modalSize="w-96"
+            >
                 <h2 class="text-xl font-semibold mb-4">Update Password</h2>
                 <form @submit.prevent="submitChangePassword">
                     <FormInput

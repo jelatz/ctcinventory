@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="p-10">
-            <Table :headers="currentHeaders" :rows="currentRows" />
+            <div class="p-10">
+                <Table :headers="currentHeaders" :rows="currentRows" />
+            </div>
         </div>
     </div>
 </template>
