@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="px-20">
         <!-- cards -->
         <div
             class="flex justify-center gap-12 px-2 items-center flex-wrap mt-5"

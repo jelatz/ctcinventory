@@ -52,28 +52,92 @@
                 </tr>
             </tbody>
         </table>
-        <button
-            class="block mt-4 ml-auto px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
-            @click="showModal = true"
-        >
-            Add User
-        </button>
-        <Modal :isOpen="showModal" @close="showModal = false" modalSize="w-1/2">
-            <h2 class="text-xl font-semibold mb-4">Add User</h2>
-        </Modal>
+        <div class="flex justify-between items-center mt-4">
+            <div>
+                Showing {{ (currentPage - 1) * pageSize + 1 }} to
+                {{ Math.min(currentPage * pageSize, totalItems) }} of
+                {{ totalItems }} entries
+            </div>
+            <div class="flex items-center">
+                <button
+                    @click="prevPage"
+                    :disabled="currentPage === 1"
+                    class="px-3 py-1 rounded border mr-2 disabled:opacity-50"
+                >
+                    Previous
+                </button>
+                <span class="mx-2"
+                    >Page {{ currentPage }} of {{ totalPages }}</span
+                >
+                <button
+                    @click="nextPage"
+                    :disabled="currentPage === totalPages"
+                    class="px-3 py-1 rounded border ml-2 disabled:opacity-50"
+                >
+                    Next
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import Modal from "@/Components/Modal.vue";
+import { ref, computed, watch } from "vue";
 
-const showModal = ref(false);
-
-defineProps({
+const props = defineProps({
     headers: Array,
     rows: Array,
 });
+
+const searchQuery = ref("");
+const pageSize = ref(10);
+const currentPage = ref(1);
+
+const filteredRows = computed(() => {
+    if (!searchQuery.value) {
+        return props.rows;
+    }
+    return props.rows.filter((row) =>
+        row.some((cell) =>
+            String(cell).toLowerCase().includes(searchQuery.value.toLowerCase())
+        )
+    );
+});
+
+const totalItems = computed(() => filteredRows.value.length);
+
+const totalPages = computed(() => {
+    if (pageSize.value === "all") {
+        return 1;
+    }
+    return Math.ceil(totalItems.value / pageSize.value);
+});
+
+const paginatedRows = computed(() => {
+    if (pageSize.value === "all") {
+        return filteredRows.value;
+    }
+    const start = (currentPage.value - 1) * pageSize.value;
+    return filteredRows.value.slice(start, start + pageSize.value);
+});
+
+function prevPage() {
+    if (currentPage.value > 1) {
+        currentPage.value--;
+    }
+}
+
+function nextPage() {
+    if (currentPage.value < totalPages.value) {
+        currentPage.value++;
+    }
+}
+
+function updatePagination(event) {
+    pageSize.value =
+        event.target.value === "all" ? "all" : parseInt(event.target.value);
+    currentPage.value = 1; // reset to first page after changing page size
+}
 </script>
 
 <!-- v-model="selectedPageSize"
