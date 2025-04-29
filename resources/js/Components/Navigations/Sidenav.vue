@@ -49,7 +49,34 @@
                 ></span>
                 Users
             </Link>
-            <Link
+            <NavButton
+                buttonValue="Categories"
+                :faIcon="['fas', 'layer-group']"
+                :faSize="'lg'"
+                buttonID="categories"
+                :isOpen="openMenu === 'categories'"
+                @toggle="toggleMenu"
+                :subMenuToggle="subMenuToggle"
+                @click="$emit('close-dropdown')"
+                :subLinks="[
+                    {
+                        name: 'Item Categories',
+                        route: route('category.item'),
+                        component: 'Category/ItemCategory',
+                    },
+                    {
+                        name: 'Brands',
+                        route: route('category.brands'),
+                        component: 'Transaction/ItemsReturn',
+                    },
+                    {
+                        name: 'Suppliers',
+                        route: route('category.supplier'),
+                        component: 'Transaction/ItemsTransfer',
+                    },
+                ]"
+            />
+            <!-- <Link
                 @click="$emit('close-dropdown')"
                 :href="route('category.index')"
                 class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
@@ -62,7 +89,7 @@
                     ><fa icon="fa-solid fa-layer-group" size="lg"></fa
                 ></span>
                 Category
-            </Link>
+            </Link> -->
             <Link
                 @click="$emit('close-dropdown')"
                 :href="route('items.index')"
@@ -85,8 +112,6 @@
                 :isOpen="openMenu === 'transactions'"
                 @toggle="toggleMenu"
                 :subMenuToggle="subMenuToggle"
-                linkName="Profile"
-                :route="route('profile')"
                 @click="$emit('close-dropdown')"
                 :subLinks="[
                     {

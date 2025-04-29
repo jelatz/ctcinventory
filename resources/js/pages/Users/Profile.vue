@@ -55,8 +55,8 @@
                     <div class="flex items-center space-x-18 flex-wrap">
                         <FormInput
                             formInputType="input"
-                            formLabel="Username"
-                            labelFor="username"
+                            formLabel="American Name"
+                            labelFor="americanName"
                             inputType="text"
                             :disabled="
                                 $page.props.auth.user.role_id != 0
@@ -112,6 +112,16 @@
                             labelFor="addedBy"
                             inputType="text"
                             v-model="updateProfile.addedBy"
+                            :disabled="
+                                $page.props.auth.user.role_id != 0
+                                    ? true
+                                    : false
+                            "
+                            v-if="
+                                $page.props.auth.user.role_id == 0
+                                    ? true
+                                    : false
+                            "
                         />
                         <FormInput
                             formInputType="input"
@@ -119,6 +129,11 @@
                             labelFor="dateAdded"
                             inputType="date"
                             v-model="updateProfile.dateAdded"
+                            :disabled="
+                                $page.props.auth.user.role_id != 0
+                                    ? true
+                                    : false
+                            "
                         />
                         <FormInput
                             formInputType="input"
@@ -126,7 +141,11 @@
                             labelFor="status"
                             inputType="text"
                             v-model="updateProfile.status"
-                            v-if="$page.props.auth.user.role_id == 0"
+                            :disabled="
+                                $page.props.auth.user.role_id != 1
+                                    ? true
+                                    : false
+                            "
                         />
                     </div>
                     <button

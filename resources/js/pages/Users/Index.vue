@@ -2,9 +2,8 @@
     <div>
         <div class="p-10">
             <div class="p-10">
-                <Table :headers="currentHeaders" :rows="currentRows" />
                 <button
-                    class="block mt-4 ml-auto px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
+                    class="block mt-4 mr-auto px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
                     @click="showModal = true"
                 >
                     Add User
@@ -14,8 +13,10 @@
                     @close="showModal = false"
                     modalSize="w-1/2"
                 >
-                    <h2 class="text-xl font-semibold mb-4">Add User</h2>``
+                    <h2 class="text-xl font-semibold mb-4">Add User</h2>
+                    ``
                 </Modal>
+                <Table :headers="currentHeaders" :rows="currentRows" />
             </div>
         </div>
     </div>

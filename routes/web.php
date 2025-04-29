@@ -16,9 +16,12 @@ Route::middleware('guest')->group(function () {
     Route::inertia('/', 'Auth/Login')->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
-    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/item-category', [CategoryController::class, 'itemCategory'])->name('category.item');
+    Route::get('/brands', [CategoryController::class, 'showBrands'])->name('category.brands');
+    Route::get('/suppliers', [CategoryController::class, 'showSupplier'])->name('category.supplier');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Items page</h1>
+    <div class="p-10">
+        <h1>hey</h1>
     </div>
 </template>
 

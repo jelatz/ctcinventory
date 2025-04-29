@@ -17,8 +17,17 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function index()
+    public function itemCategory()
     {
-        return Inertia::render('Category/Index');
+        return Inertia::render('Category/ItemCategory');
+    }
+
+    public function showBrands()
+    {
+        return Inertia::render('Category/Brands');
+    }
+    public function showSupplier()
+    {
+        return Inertia::render('Category/Supplier');
     }
 }
