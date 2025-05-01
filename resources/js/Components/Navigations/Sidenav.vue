@@ -67,29 +67,15 @@
                     {
                         name: 'Brands',
                         route: route('category.brands'),
-                        component: 'Transaction/ItemsReturn',
+                        component: 'Category/Brands',
                     },
                     {
                         name: 'Suppliers',
                         route: route('category.supplier'),
-                        component: 'Transaction/ItemsTransfer',
+                        component: 'Category/Supplier',
                     },
                 ]"
             />
-            <!-- <Link
-                @click="$emit('close-dropdown')"
-                :href="route('category.index')"
-                class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block"
-                :class="{
-                    'bg-[#e2e2e2] text-[#162556]':
-                        $page.component === 'Category/Index',
-                }"
-            >
-                <span class="absolute left-4"
-                    ><fa icon="fa-solid fa-layer-group" size="lg"></fa
-                ></span>
-                Category
-            </Link> -->
             <Link
                 @click="$emit('close-dropdown')"
                 :href="route('items.index')"

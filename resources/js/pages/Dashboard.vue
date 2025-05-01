@@ -85,10 +85,10 @@ import DashboardCard from "@/Components/Dashboard/DashboardCard.vue";
 
 const tableSets = {
     totalItems: {
-        headers: ["Item Name", "Category", "Status"],
+        headers: ["Item Name", "Category", "Quantity"],
         rows: [
-            ["Mouse", "Electronics", "Available"],
-            ["Keyboard", "Electronics", "Assigned"],
+            ["Mouse", "Electronics", "10"],
+            ["Keyboard", "Electronics", "10"],
         ],
     },
     availableItems: {

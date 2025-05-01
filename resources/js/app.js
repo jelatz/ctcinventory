@@ -1,8 +1,10 @@
 import "./bootstrap";
+
 import { createApp, h } from "vue";
 import { createInertiaApp, Head, Link } from "@inertiajs/vue3";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import AppLayout from "@/layouts/AppLayout.vue";
+import vSelect from "vue-select";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -32,6 +34,7 @@ createInertiaApp({
             .component("Head", Head)
             .component("Link", Link)
             .component("fa", FontAwesomeIcon)
+            .component("vSelect", vSelect)
             .mount(el);
     },
 });
