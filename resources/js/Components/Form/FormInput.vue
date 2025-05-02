@@ -1,25 +1,41 @@
 <template>
     <div class="mb-4">
+        <!-- Label -->
         <label :for="labelFor" class="block mb-1 font-semibold text-md">
             {{ formLabel }}
         </label>
+
+        <!-- Input -->
         <input
             v-if="formInputType === 'input'"
             :id="labelFor"
             ref="dateInput"
-            @focus="inputType === 'date' && openDatePicker()"
             v-model="localValue"
-            :class="['w-72 h-10 border rounded p-2', inputClass]"
             :type="inputType"
             :disabled="disabled"
+            @focus="inputType === 'date' && openDatePicker()"
+            :class="[
+                'w-72 h-10 border rounded p-2',
+                inputClass,
+                formError ? 'border-red-500' : 'border-gray-300',
+            ]"
         />
 
+        <!-- Native Select -->
         <select
             v-else-if="formInputType === 'select'"
             :id="labelFor"
             v-model="localValue"
-            class="w-72 h-10 border rounded p-2"
+            :disabled="disabled"
+            :class="[
+                'w-72 h-10 border rounded p-2 bg-white',
+                inputClass,
+                formError ? 'border-red-500' : 'border-gray-300',
+            ]"
         >
+            <option disabled value="">
+                {{ selectPlaceholder || "Select an option" }}
+            </option>
             <option
                 v-for="(option, index) in options"
                 :key="index"
@@ -29,14 +45,24 @@
             </option>
         </select>
 
+        <!-- Textarea -->
         <textarea
             v-else-if="formInputType === 'textarea'"
             :id="labelFor"
             v-model="localValue"
-            class="w-72 h-10 border rounded p-2"
+            :disabled="disabled"
             rows="4"
+            :class="[
+                'w-72 border rounded p-2',
+                inputClass,
+                formError ? 'border-red-500' : 'border-gray-300',
+            ]"
         ></textarea>
-        <p v-if="formError" class="text-red-600">{{ formErrorMessage }}</p>
+
+        <!-- Error -->
+        <p v-if="formError" class="text-red-600 mt-1 text-sm">
+            {{ formErrorMessage }}
+        </p>
     </div>
 </template>
 
@@ -48,25 +74,18 @@ const props = defineProps({
     formInputType: String,
     formLabel: String,
     labelFor: String,
-    inputType: {
-        type: String,
-        default: "text",
-    },
-    options: {
-        type: Array,
-        default: () => [],
-    },
+    inputType: { type: String, default: "text" },
+    options: { type: Array, default: () => [] },
     inputClass: String,
     formError: Boolean,
     formErrorMessage: String,
     disabled: Boolean,
+    selectPlaceholder: String,
 });
 
 const emit = defineEmits(["update:modelValue"]);
-
 const localValue = ref(props.modelValue);
 
-// Watch for external changes and emit updates
 watch(
     () => props.modelValue,
     (val) => (localValue.value = val)
@@ -77,7 +96,6 @@ watch(localValue, (val) => {
 });
 
 const dateInput = ref(null);
-
 function openDatePicker() {
     if (dateInput.value && typeof dateInput.value.showPicker === "function") {
         dateInput.value.showPicker();
@@ -89,7 +107,7 @@ function openDatePicker() {
 
 <style scoped>
 select option {
-    background-color: red !important;
+    padding: 0.5rem;
 }
 input:disabled,
 select:disabled,

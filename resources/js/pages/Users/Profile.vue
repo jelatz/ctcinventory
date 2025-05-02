@@ -50,9 +50,18 @@
                     </button>
                 </form>
             </Modal>
+
+            <!-- main  -->
             <div class="shadow-lg px-10 py-5 rounded-lg">
                 <form @submit.prevent="submitUpdateProfile">
-                    <div class="flex items-center space-x-18 flex-wrap">
+                    <img
+                        :src="$page.props.auth.profile_picture"
+                        alt="profile picture"
+                        class="rounded-full w-20 h-20 block mx-auto"
+                    />
+                    <div
+                        class="flex items-center space-x-10 justify-stretch flex-wrap"
+                    >
                         <FormInput
                             formInputType="input"
                             formLabel="American Name"
@@ -79,6 +88,7 @@
                                     ? true
                                     : false
                             "
+                            selectPlaceholder="Select Role"
                         />
                         <FormInput
                             formInputType="input"
