@@ -13,7 +13,7 @@
             <DashboardCard
                 cardTitle="Total Devices"
                 :totalItem="5"
-                :faIcon="['fas', 'fa-box']"
+                :faIcon="['fas', 'fa-desktop']"
                 :faSize="'lg'"
                 @card-click="() => showTable('totalDevices')"
             />
@@ -104,10 +104,18 @@ const tableSets = {
             "Brand",
             "Model",
             "Serial Number",
+            "Status",
         ],
         rows: [
-            ["Laptop", "IT001", "Dell", "XPS 13", "SN123456"],
-            ["Monitor", "IT002", "Samsung", "Odyssey G7", "SN654321"],
+            ["Laptop", "IT001", "Dell", "XPS 13", "SN123456", "Assigned"],
+            [
+                "Monitor",
+                "IT002",
+                "Samsung",
+                "Odyssey G7",
+                "SN654321",
+                "Not Assigned",
+            ],
         ],
     },
     availableItems: {
