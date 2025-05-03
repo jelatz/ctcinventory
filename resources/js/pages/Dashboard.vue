@@ -1,15 +1,21 @@
 <template>
     <div class="p-10">
         <!-- cards -->
-        <div
-            class="flex justify-center gap-12 px-2 items-center flex-wrap mt-5"
-        >
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <div class="flex justify-center gap-5 px-2 items-center flex-wrap mt-5">
             <DashboardCard
                 cardTitle="Total Items"
                 :totalItem="5"
                 :faIcon="['fas', 'fa-box']"
                 :faSize="'lg'"
                 @card-click="() => showTable('totalItems')"
+            />
+            <DashboardCard
+                cardTitle="Total Devices"
+                :totalItem="5"
+                :faIcon="['fas', 'fa-box']"
+                :faSize="'lg'"
+                @card-click="() => showTable('totalDevices')"
             />
             <DashboardCard
                 cardTitle="Available Items"
@@ -89,6 +95,19 @@ const tableSets = {
         rows: [
             ["Mouse", "Electronics", "10"],
             ["Keyboard", "Electronics", "10"],
+        ],
+    },
+    totalDevices: {
+        headers: [
+            "Device Type",
+            "Item Code",
+            "Brand",
+            "Model",
+            "Serial Number",
+        ],
+        rows: [
+            ["Laptop", "IT001", "Dell", "XPS 13", "SN123456"],
+            ["Monitor", "IT002", "Samsung", "Odyssey G7", "SN654321"],
         ],
     },
     availableItems: {
