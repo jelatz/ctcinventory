@@ -1,6 +1,6 @@
 <template>
     <button
-        class="w-52 p-5 rounded-lg shadow-lg hover:transform hover:scale-105 transition-all duration-300 ease-in-out bg-white cursor-pointer active:bg-slate-600"
+        class="w-64 p-5 rounded-lg shadow-lg hover:transform hover:scale-105 transition-all duration-300 ease-in-out bg-white cursor-pointer active:bg-slate-600"
         @click="$emit('card-click')"
     >
         <div class="flex items-start space-y-5 flex-col justify-between">
@@ -20,7 +20,6 @@ defineProps({
     faIcon: Array,
     faSize: String,
 });
-
 </script>
 
 <style scoped></style>
