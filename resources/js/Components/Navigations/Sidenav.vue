@@ -2,7 +2,7 @@
 <template>
     <div
         class="bg-blue-950 text-white sidenav overflow-hidden transition-all duration-600 ease-in-out text-nowrap"
-        :class="isShown ? 'w-96' : 'w-0'"
+        :class="isShown ? 'w-80' : 'w-0'"
     >
         <div class="flex justify-center flex-col py-5 items-center">
             <img

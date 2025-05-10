@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold">Dashboard</h1>
 
         <div
-            class="flex justify-between gap-5 px-2 items-center flex-wrap mt-5"
+            class="flex justify-stretch space-x-10 space-y-10 px-2 items-stretch flex-wrap mt-5"
         >
             <DashboardCard
                 v-for="card in dashboardCards"
@@ -30,6 +30,27 @@ import Table from "@/Components/Table.vue";
 import DashboardCard from "@/Components/Dashboard/DashboardCard.vue";
 
 const tableSets = {
+    totalItems: {
+        headers: ["Item Name", "Category", "Quantity"],
+        rows: [
+            ["Laptop", "Devices", 5],
+            ["Monitor", "Devices", 3],
+            ["Printer", "Devices", 2],
+            ["Tablet", "Devices", 4],
+            ["Smartphone", "Devices", 6],
+            ["Bondpaper", "Supplies", 10],
+            ["Scissors", "Supplies", 5],
+            ["Printing Paper", "Supplies", 2],
+            ["White board", "Supplies", 1],
+            ["Projector", "Furnitures", 2],
+            ["Desk", "Furnitures", 4],
+            ["Chair", "Furnitures", 6],
+            ["Monitor", "Tools", 3],
+            ["Printer", "Tools", 2],
+            ["Laptop", "Tools", 5],
+            ["Tablet", "Users", 4],
+        ],
+    },
     devices: {
         headers: [
             "Device Type",
@@ -72,21 +93,21 @@ const tableSets = {
         ],
     },
     tools: {
-        headers: ["Item Name", "Category", "Status"],
+        headers: ["Item Name", "Item Code", "Brand", "Model", "Status"],
         rows: [
-            ["Monitor", "Electronics", "Available"],
-            ["Printer", "Electronics", "Available"],
+            ["Drill", "D203", "Makita", "model1", "Available"],
+            ["Drill", "D102", "Bosch", "model2", "Available"],
         ],
     },
     furnitures: {
-        headers: ["Item Name", "Category", "Status"],
+        headers: ["Name", "Brand", "Location", "Status"],
         rows: [
-            ["Laptop", "Electronics", "Assigned"],
-            ["Projector", "Electronics", "Assigned"],
+            ["Couch", "brand1", "4th Floor Lobby", "Assigned"],
+            ["Flower Pot", "brand1", "9th Floor Lobby", "Assigned"],
         ],
     },
     users: {
-        headers: ["Item Name", "Category", "Status"],
+        headers: ["Name", "Department","","Status"],
         rows: [
             ["Tablet", "Electronics", "In Transfer"],
             ["Smartphone", "Electronics", "In Transfer"],
@@ -95,6 +116,12 @@ const tableSets = {
 };
 
 const dashboardCards = [
+    {
+        title: "Total Items",
+        type: "totalItems",
+        total: 5,
+        icon: ["fas", "fa-layer-group"],
+    },
     {
         title: "Devices",
         type: "devices",
