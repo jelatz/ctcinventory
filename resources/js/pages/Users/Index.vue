@@ -14,10 +14,101 @@
                 <Modal
                     :isOpen="userModal"
                     @close="userModal = false"
-                    modalSize="w-1/2"
+                    modalSize="w-3/4"
                 >
-                    <h2 class="text-xl font-semibold mb-4">Add User</h2>
-                    ``
+                    <h2 class="text-2xl font-semibold mb-4">Add User</h2>
+                    <form>
+                        <div
+                            class="flex items-center justify-evenly user-form gap-10"
+                        >
+                            <FormInput
+                                formLabel="First Name"
+                                labelFor="firstName"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="firstName"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                            <FormInput
+                                formLabel="Middle Name"
+                                labelFor="middleName"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="middleName"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                            <FormInput
+                                formLabel="Last Name"
+                                labelFor="lastName"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="lastName"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                            <FormInput
+                                formLabel="Email"
+                                labelFor="email"
+                                formInputType="input"
+                                inputType="email"
+                                v-model="email"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is
+                            required"
+                            />
+                            <FormInput
+                                formLabel="Username"
+                                labelFor="username"
+                                formInputType="input"
+                                inputType="username"
+                                v-model="username"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is
+                            required"
+                            />
+                        </div>
+                        <div
+                            class="flex items-center justify-evenly user-form gap-10"
+                        >
+                            <FormInput
+                                formLabel="Department"
+                                labelFor="department"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="department"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                            <FormInput
+                                formLabel="Account"
+                                labelFor="account"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="account"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                            <FormInput
+                                formLabel="Role"
+                                labelFor="role"
+                                formInputType="input"
+                                inputType="text"
+                                v-model="role"
+                                inputClass="w-full"
+                                :formError="false"
+                                errorMessage="This field is required"
+                            />
+                        </div>
+                    </form>
                 </Modal>
                 <button
                     class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
@@ -71,6 +162,7 @@ const userModal = ref(false);
 const positionModal = ref(false);
 const departmentModal = ref(false);
 import Table from "@/Components/Table.vue";
+import FormInput from "../../Components/Form/FormInput.vue";
 const tableSets = {
     totalItems: {
         headers: ["Employee ID", "Name", "Position", "Department", "Action"],
@@ -94,4 +186,8 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.user-form div {
+    width: 100%;
+}
+</style>

@@ -60,13 +60,14 @@
                         class="rounded-full w-20 h-20 block mx-auto"
                     />
                     <div
-                        class="flex items-center space-x-10 justify-stretch flex-wrap"
+                        class="flex items-center justify-between flex-wrap profile-form gap-3"
                     >
                         <FormInput
                             formInputType="input"
                             formLabel="American Name"
                             labelFor="americanName"
                             inputType="text"
+                            inputClass="w-full"
                             :disabled="
                                 $page.props.auth.user.role_id != 0
                                     ? true
@@ -78,6 +79,7 @@
                             formInputType="select"
                             formLabel="Role"
                             labelFor="role"
+                            inputClass="w-full"
                             :options="[
                                 { label: 'Admin', value: 'admin' },
                                 { label: 'User', value: 'user' },
@@ -95,6 +97,7 @@
                             formLabel="Email"
                             labelFor="email"
                             inputType="email"
+                            inputClass="w-full"
                             v-model="updateProfile.email"
                             :disabled="
                                 $page.props.auth.user.role_id != 0
@@ -106,6 +109,7 @@
                             formInputType="input"
                             formLabel="Real Name"
                             labelFor="realName"
+                            inputClass="w-full"
                             inputType="text"
                             v-model="updateProfile.realName"
                         />
@@ -113,30 +117,15 @@
                             formInputType="input"
                             formLabel="Password"
                             labelFor="password"
+                            inputClass="w-full"
                             inputType="password"
                             v-model="updateProfile.password"
                         />
                         <FormInput
                             formInputType="input"
-                            formLabel="Added by"
-                            labelFor="addedBy"
-                            inputType="text"
-                            v-model="updateProfile.addedBy"
-                            :disabled="
-                                $page.props.auth.user.role_id != 0
-                                    ? true
-                                    : false
-                            "
-                            v-if="
-                                $page.props.auth.user.role_id == 0
-                                    ? true
-                                    : false
-                            "
-                        />
-                        <FormInput
-                            formInputType="input"
                             formLabel="Date Added"
                             labelFor="dateAdded"
+                            inputClass="w-full"
                             inputType="date"
                             v-model="updateProfile.dateAdded"
                             :disabled="
@@ -149,6 +138,7 @@
                             formInputType="input"
                             formLabel="Status"
                             labelFor="status"
+                            inputClass="w-full"
                             inputType="text"
                             v-model="updateProfile.status"
                             :disabled="
@@ -188,7 +178,6 @@ const updateProfile = useForm({
     realName: null,
     password: null,
     addedBy: null,
-    dateAdded: null,
     status: null,
 });
 
@@ -213,4 +202,8 @@ const submitUpdateProfile = () => {
 const showModal = ref(false);
 </script>
 
-<style scoped></style>
+<style scoped>
+.profile-form div {
+    width: 18rem;
+}
+</style>

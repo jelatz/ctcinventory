@@ -15,7 +15,7 @@
             :disabled="disabled"
             @focus="inputType === 'date' && openDatePicker()"
             :class="[
-                'w-72 h-10 border rounded p-2',
+                'h-10 border rounded p-2',
                 inputClass,
                 formError ? 'border-red-500' : 'border-gray-300',
             ]"
@@ -28,7 +28,7 @@
             v-model="localValue"
             :disabled="disabled"
             :class="[
-                'w-72 h-10 border rounded p-2 bg-white',
+                'h-10 border rounded p-2 bg-white',
                 inputClass,
                 formError ? 'border-red-500' : 'border-gray-300',
             ]"
@@ -53,7 +53,7 @@
             :disabled="disabled"
             rows="4"
             :class="[
-                'w-72 border rounded p-2',
+                'border rounded p-2',
                 inputClass,
                 formError ? 'border-red-500' : 'border-gray-300',
             ]"
