@@ -1,6 +1,8 @@
 <template>
     <div>
         <div class="p-10">
+            <h1 class="text-2xl font-bold mb-5">Users</h1>
+
             <div class="flex items-center justify-start space-x-5">
                 <button
                     class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"

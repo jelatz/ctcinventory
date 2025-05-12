@@ -1,11 +1,11 @@
 <template>
     <div
-        class="bg-[#e9e9e9] w-full lg:w-[30%] min-h-screen h-full flex flex-col justify-start pt-40 items-stretch text-center"
+        class="bg-[#e9e9e9] w-full lg:w-[30%] min-h-screen h-full flex flex-col justify-start pt-20 items-stretch text-center"
     >
         <img
             :src="'/storage/ctc_logo.png'"
             alt="Logo"
-            class="my-5 w-32 mx-auto"
+            class="my-5 w-26 mx-auto"
         />
         <p class="tracking-widest mb-5">Calltek Center</p>
         <h2 class="text-2xl text-blue-950 text-shadow-blue-950">

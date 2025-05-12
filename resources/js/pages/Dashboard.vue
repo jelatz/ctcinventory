@@ -1,10 +1,8 @@
 <template>
     <div class="p-10">
-        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <h1 class="text-2xl font-bold mb-5">Dashboard</h1>
 
-        <div
-            class="flex justify-stretch space-x-10 space-y-10 px-2 items-stretch flex-wrap mt-5"
-        >
+        <div class="flex justify-evenly gap-10 px-2 items-stretch flex-wrap">
             <DashboardCard
                 v-for="card in dashboardCards"
                 :key="card.type"
@@ -107,10 +105,14 @@ const tableSets = {
         ],
     },
     users: {
-        headers: ["Name", "Department","","Status"],
+        headers: ["Name", "Department", "Position", "Status"],
         rows: [
-            ["Tablet", "Electronics", "In Transfer"],
-            ["Smartphone", "Electronics", "In Transfer"],
+            ["User1", "HR", "Supervisor", "Assigned"],
+            ["User2", "IT", "Manager", "In Transfer"],
+            ["User3", "HR", "Staff", "Assigned"],
+            ["User4", "Finance", "Staff", "Assigned"],
+            ["User5", "PCTECH", "Staff", "In Transfer"],
+            ["User2", "PCTECH", "Staff", "In Transfer"],
         ],
     },
 };
