@@ -19,7 +19,7 @@
                     <h2 class="text-2xl font-semibold mb-4">Add User</h2>
                     <form>
                         <div
-                            class="flex items-center justify-evenly user-form gap-10"
+                            class="flex items-center justify-evenly user-form gap-2"
                         >
                             <FormInput
                                 formLabel="First Name"
@@ -51,6 +51,10 @@
                                 :formError="false"
                                 errorMessage="This field is required"
                             />
+                        </div>
+                        <div
+                            class="flex items-center justify-evenly user-form gap-2"
+                        >
                             <FormInput
                                 formLabel="Email"
                                 labelFor="email"
@@ -60,7 +64,7 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is
-                            required"
+                        required"
                             />
                             <FormInput
                                 formLabel="Username"
@@ -71,12 +75,8 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is
-                            required"
+                        required"
                             />
-                        </div>
-                        <div
-                            class="flex items-center justify-evenly user-form gap-10"
-                        >
                             <FormInput
                                 formLabel="Department"
                                 labelFor="department"
@@ -87,6 +87,10 @@
                                 :formError="false"
                                 errorMessage="This field is required"
                             />
+                        </div>
+                        <div
+                            class="flex items-center justify-evenly user-form gap-2"
+                        >
                             <FormInput
                                 formLabel="Account"
                                 labelFor="account"
@@ -186,8 +190,4 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-.user-form div {
-    width: 100%;
-}
-</style>
+<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-4">
+    <div class="mb-4 w-full">
         <!-- Label -->
         <label :for="labelFor" class="block mb-1 font-semibold text-md">
             {{ formLabel }}
