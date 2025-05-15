@@ -19,7 +19,7 @@
                     <h2 class="text-2xl font-semibold mb-4">Add User</h2>
                     <form>
                         <div
-                            class="flex items-center justify-evenly user-form gap-2"
+                            class="flex items-center justify-between gap-5 flex-wrap mt-10"
                         >
                             <FormInput
                                 formLabel="First Name"
@@ -30,6 +30,7 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
                             <FormInput
                                 formLabel="Middle Name"
@@ -40,6 +41,7 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
                             <FormInput
                                 formLabel="Last Name"
@@ -50,11 +52,8 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
-                        </div>
-                        <div
-                            class="flex items-center justify-evenly user-form gap-2"
-                        >
                             <FormInput
                                 formLabel="Email"
                                 labelFor="email"
@@ -65,6 +64,7 @@
                                 :formError="false"
                                 errorMessage="This field is
                         required"
+                                containerClass="w-60"
                             />
                             <FormInput
                                 formLabel="Username"
@@ -76,6 +76,7 @@
                                 :formError="false"
                                 errorMessage="This field is
                         required"
+                                containerClass="w-60"
                             />
                             <FormInput
                                 formLabel="Department"
@@ -86,11 +87,9 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
-                        </div>
-                        <div
-                            class="flex items-center justify-evenly user-form gap-2"
-                        >
+
                             <FormInput
                                 formLabel="Account"
                                 labelFor="account"
@@ -100,6 +99,7 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
                             <FormInput
                                 formLabel="Role"
@@ -110,8 +110,16 @@
                                 inputClass="w-full"
                                 :formError="false"
                                 errorMessage="This field is required"
+                                containerClass="w-60"
                             />
                         </div>
+
+                        <button
+                            type="submit"
+                            class="mt-5 px-10 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900 block ml-auto"
+                        >
+                            Add
+                        </button>
                     </form>
                 </Modal>
                 <button
