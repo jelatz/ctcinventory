@@ -6,58 +6,30 @@
         </label>
 
         <!-- Input -->
-        <input
-            v-if="formInputType === 'input'"
-            :id="labelFor"
-            ref="dateInput"
-            v-model="localValue"
-            :type="inputType"
-            :disabled="disabled"
-            @focus="inputType === 'date' && openDatePicker()"
+        <input v-if="formInputType === 'input'" :id="labelFor" ref="dateInput" v-model="localValue" :type="inputType"
+            :disabled="disabled" @focus="inputType === 'date' && openDatePicker()" :class="[
+                'h-10 border rounded p-2',
+                inputClass,
+                formError ? 'border-red-500' : 'border-gray-300',
+            ]" />
+
+        <!-- Native Select -->
+        <v-select v-else-if="formInputType === 'select'" :id="labelFor" v-model="localValue" :disabled="disabled"
             :class="[
                 'h-10 border rounded p-2',
                 inputClass,
                 formError ? 'border-red-500' : 'border-gray-300',
-            ]"
-        />
+            ]" :options="options" :placeholder="selectPlaceholder">
+        </v-select>
 
-        <!-- Native Select -->
-        <select
-            v-else-if="formInputType === 'select'"
-            :id="labelFor"
-            v-model="localValue"
-            :disabled="disabled"
-            :class="[
-                'h-10 border rounded p-2 bg-white',
-                inputClass,
-                formError ? 'border-red-500' : 'border-gray-300',
-            ]"
-        >
-            <option disabled value="">
-                {{ selectPlaceholder || "Select an option" }}
-            </option>
-            <option
-                v-for="(option, index) in options"
-                :key="index"
-                :value="option.value"
-            >
-                {{ option.label }}
-            </option>
-        </select>
 
         <!-- Textarea -->
-        <textarea
-            v-else-if="formInputType === 'textarea'"
-            :id="labelFor"
-            v-model="localValue"
-            :disabled="disabled"
-            rows="4"
-            :class="[
+        <textarea v-else-if="formInputType === 'textarea'" :id="labelFor" v-model="localValue" :disabled="disabled"
+            rows="4" :class="[
                 'border rounded p-2',
                 inputClass,
                 formError ? 'border-red-500' : 'border-gray-300',
-            ]"
-        ></textarea>
+            ]"></textarea>
 
         <!-- Error -->
         <p v-if="formError" class="text-red-600 mt-1 text-sm">
@@ -110,6 +82,7 @@ function openDatePicker() {
 select option {
     padding: 0.5rem;
 }
+
 input:disabled,
 select:disabled,
 textarea:disabled {
