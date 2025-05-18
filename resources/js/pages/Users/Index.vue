@@ -56,9 +56,17 @@
                     Add Position
                 </button>
                 <!-- Position Modal -->
-                <Modal :isOpen="positionModal" @close="positionModal = false" modalSize="w-1/2">
+                <Modal :isOpen="positionModal" @close="positionModal = false" modalSize="w-96">
                     <h2 class="text-xl font-semibold mb-4">Add Position</h2>
-                    ``
+                    <form>
+                        <FormInput formLabel="Position Name" labelFor="position" formInputType="input"
+                            v-model="position" inputClass="w-full" :formError="false"
+                            errorMessage="Please enter a position" containerClass="w-full" />
+                        <button type="submit"
+                            class="mt-5 px-10 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900 block ml-auto">
+                            Add
+                        </button>
+                    </form>
                 </Modal>
 
                 <button class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
@@ -66,15 +74,19 @@
                     Add Department
                 </button>
                 <!-- Department Modal -->
-                <Modal :isOpen="departmentModal" @close="departmentModal = false" modalSize="w-1/2">
+                <Modal :isOpen="departmentModal" @close="departmentModal = false" modalSize="w-96">
                     <h2 class="text-xl font-semibold mb-4">Add Department</h2>
-                    ``
+                    <form>
+                        <FormInput formLabel="Department Name" labelFor="department" formInputType="input"
+                            v-model="department" inputClass="w-full" :formError="false"
+                            errorMessage="Please enter a department" containerClass="w-full" />
+                        <button type="submit"
+                            class="mt-5 px-10 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900 block ml-auto">
+                            Add
+                        </button>
+                    </form>
                 </Modal>
             </div>
-            <Modal :isOpen="showModal" @close="showModal = false" modalSize="w-1/2">
-                <h2 class="text-xl font-semibold mb-4">Add User</h2>
-                ``
-            </Modal>
             <Table :headers="currentHeaders" :rows="currentRows" />
         </div>
     </div>
@@ -154,6 +166,17 @@ onMounted(() => {
     currentHeaders.value = tableSets.totalItems.headers;
     currentRows.value = tableSets.totalItems.rows;
 });
+
+
+// Escape key event listener (closes the modal)
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        userModal.value = false;
+        positionModal.value = false;
+        departmentModal.value = false;
+        showModal.value = false;
+    }
+})
 </script>
 
 <style scoped></style>
