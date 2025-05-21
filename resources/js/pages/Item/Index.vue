@@ -49,7 +49,7 @@
                 Category
             </label>
             <v-select :options="categoryOptions" label="category" :reduce="(category) => category.code" multiple
-                placeholder="Select category" class="w-96" id="category-select" />
+                placeholder="Select category" class="w-96 p-2 border" id="category-select" />
             <Table :headers="currentHeaders" :rows="currentRows" />
         </div>
     </div>

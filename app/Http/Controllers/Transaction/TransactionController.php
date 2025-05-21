@@ -15,6 +15,11 @@ class TransactionController extends Controller
         $this->transactionService = $transactionService;
     }
 
+    public function index()
+    {
+        return inertia('Transaction/Index');
+    }
+
     public function itemAssignment()
     {
         return inertia('Transaction/ItemsAssignment');

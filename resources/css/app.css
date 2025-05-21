@@ -16,6 +16,10 @@
     /* padding: 0 !important; */
     border: none !important;
 }
+
+.vs__dropdown-toggle {
+    padding: 0 !important;
+}
 .vs__actions{
     gap: 10px;
 }

@@ -25,10 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/item-assignment', [TransactionController::class, 'itemAssignment'])->name('items.assignment');
-    Route::get('/item-return', [TransactionController::class, 'itemReturn'])->name('items.return');
-    Route::get('/item-transfer', [TransactionController::class, 'itemTransfer'])->name('items.transfer');
-    Route::get('/item-disposal', [TransactionController::class, 'itemDisposal'])->name('items.disposal');
+    Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
