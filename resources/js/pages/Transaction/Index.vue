@@ -8,30 +8,19 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import Modal from "@/Components/Modal.vue";
 import Table from "@/Components/Table.vue";
 
-// State variables
-const itemModal = ref(false);
-
-const categoryOptions = [
-    { category: "Devices", code: "1" },
-    { category: "Supply", code: "2" },
-    { category: "Tools", code: "3" },
-    { category: "Furnitures", code: "4" },
-    { category: "Others", code: "5" },
-];
 
 // Table data
 const tableSets = {
     totalItems: {
-        headers: ["Employee ID", "Name", "Position", "Department", "Action"],
+        headers: ["Transaction ID", "Item Name", "Quantity", "Date", "Type", "Action"],
         rows: [
-            ["E001", "John Doe", "Software Engineer", "IT", "Edit"],
-            ["E002", "Jane Smith", "Project Manager", "Marketing", "Edit"],
-            ["E003", "Sam Wilson", "Data Analyst", "Finance", "Edit"],
-            ["E004", "Lisa Brown", "UX Designer", "Design", "Edit"],
-            ["E005", "Tom Green", "Sales Executive", "Sales", "Edit"],
+            ["T001", "Laptop", "2", "2023-06-15", "Completed", "View"],
+            ["T002", "Monitor", "5", "2023-06-16", "Pending", "View"],
+            ["T003", "Keyboard", "10", "2023-06-17", "Completed", "View"],
+            ["T004", "Mouse", "15", "2023-06-18", "Cancelled", "View"],
+            ["T005", "Headset", "7", "2023-06-19", "Processing", "View"],
         ],
     },
 };

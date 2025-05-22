@@ -20,22 +20,5 @@ class TransactionController extends Controller
         return inertia('Transaction/Index');
     }
 
-    public function itemAssignment()
-    {
-        return inertia('Transaction/ItemsAssignment');
-    }
-
-    public function itemReturn()
-    {
-        return inertia('Transaction/ItemsReturn');
-    }
-    public function itemTransfer()
-    {
-        return inertia('Transaction/ItemsTransfer');
-    }
-
-    public function itemDisposal()
-    {
-        return inertia('Transaction/ItemsDisposal');
-    }
+   
 }
