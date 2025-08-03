@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-full shadow-lg px-5 py-[1rem] flex justify-between items-center"
+        class="w-full shadow-lg px-5 py-[1rem] flex justify-between items-center bg-blue-950 text-white"
     >
         <button type="button" class="cursor-pointer" @click="toggleSidenav">
             <fa icon="fa-solid fa-bars" size="lg" />

@@ -3,7 +3,7 @@
     <div class="p-10">
         <h1 class="text-2xl font-bold mb-5">Dashboard</h1>
 
-        <div class="flex justify-evenly gap-10 px-2 items-stretch flex-wrap">
+        <div class="flex justify-left gap-8 px-2 items-stretch flex-wrap">
             <DashboardCard
                 v-for="card in dashboardCards"
                 :key="card.type"
