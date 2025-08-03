@@ -1,4 +1,5 @@
 <template>
+    <Head title="Dashboard" />
     <div class="p-10">
         <h1 class="text-2xl font-bold mb-5">Dashboard</h1>
 
@@ -26,6 +27,7 @@
 import { ref, onMounted } from "vue";
 import Table from "@/Components/Table.vue";
 import DashboardCard from "@/Components/Dashboard/DashboardCard.vue";
+import { Head } from "@inertiajs/vue3";
 
 const tableSets = {
     totalItems: {
