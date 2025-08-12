@@ -4,7 +4,7 @@
     <div class="p-10">
         <h1 class="text-2xl font-bold mb-5">Dashboard</h1>
 
-        <div class="flex justify-stretch gap-5 items-stretch flex-wrap">
+        <div class="flex justify-evenly **:flex-1 gap-5 items-stretch flex-wrap">
             <DashboardCard v-for="card in dashboardCards" :key="card.type" :cardTitle="card.title"
                 :totalItem="card.total" :faIcon="card.icon" :faSize="'lg'" @card-click="() => showTable(card.type)" />
         </div>
