@@ -3,17 +3,28 @@
         <div class="p-10">
             <h1 class="text-2xl font-bold mb-5">Users</h1>
 
-            <div class="flex items-center justify-start space-x-5">
-
+            <div class="flex items-center justify-end">
                 <button class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
                     @click="userModal = true">
                     Add User
                 </button>
                 <!-- User Modal -->
-                <Modal :isOpen="userModal" @close="() => { userModal = false; resetUserForm(); }" modalSize="w-3/4">
+                <Modal :isOpen="userModal" @close="
+                    () => {
+                        userModal = false;
+                        resetUserForm();
+                    }
+                " modalSize="w-3/4">
                     <h2 class="text-2xl font-semibold mb-4">Add User</h2>
                     <form>
                         <div class="flex items-center justify-between gap-5 flex-wrap mt-10">
+                            <FormInput formLabel="Email" labelFor="email" formInputType="input" inputType="email"
+                                v-model="userForm.email" inputClass="w-full" :formError="false" errorMessage="This field is
+                        required" containerClass="w-60" />
+                            <FormInput formLabel="Username" labelFor="username" formInputType="input"
+                                inputType="username" v-model="userForm.username" inputClass="w-full" :formError="false"
+                                errorMessage="This field is
+                        required" containerClass="w-60" />
                             <FormInput formLabel="First Name" labelFor="firstName" formInputType="input"
                                 inputType="text" v-model="userForm.firstName" inputClass="w-full" :formError="false"
                                 errorMessage="This field is required" containerClass="w-60" />
@@ -23,25 +34,7 @@
                             <FormInput formLabel="Last Name" labelFor="lastName" formInputType="input" inputType="text"
                                 v-model="userForm.lastName" inputClass="w-full" :formError="false"
                                 errorMessage="This field is required" containerClass="w-60" />
-                            <FormInput formLabel="Email" labelFor="email" formInputType="input" inputType="email"
-                                v-model="userForm.email" inputClass="w-full" :formError="false" errorMessage="This field is
-                        required" containerClass="w-60" />
-                            <FormInput formLabel="Username" labelFor="username" formInputType="input"
-                                inputType="username" v-model="userForm.username" inputClass="w-full" :formError="false"
-                                errorMessage="This field is
-                        required" containerClass="w-60" />
-                            <FormInput formLabel="Department" labelFor="department" formInputType="select"
-                                :options="departmentOptions" selectPlaceholder="Select Department"
-                                :reduce="(option) => option.id" v-model="userForm.department"
-                                inputClass="custom-vselect w-60" :formError="false"
-                                errorMessage="This field is required" containerClass="w-60" />
-                            <FormInput formLabel="Account" labelFor="account" formInputType="select"
-                                :options="accountOptions" selectPlaceholder="Select Account"
-                                :reduce="(option) => option.id" v-model="userForm.account" inputClass="w-full"
-                                :formError="false" errorMessage="This field is required" containerClass="w-60" />
-                            <FormInput formLabel="Role" labelFor="role" formInputType="input" inputType="text"
-                                v-model="userForm.role" inputClass="w-full" :formError="false"
-                                errorMessage="This field is required" containerClass="w-60" />
+
                         </div>
 
                         <button type="submit"
@@ -51,11 +44,11 @@
                     </form>
                 </Modal>
 
-                <button class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
+                <!-- <button class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
                     @click="positionModal = true">
                     Add Position
                 </button>
-                <!-- Position Modal -->
+                Position Modal
                 <Modal :isOpen="positionModal" @close="positionModal = false" modalSize="w-96">
                     <h2 class="text-xl font-semibold mb-4">Add Position</h2>
                     <form>
@@ -72,9 +65,9 @@
                 <button class="px-4 py-2 rounded-lg bg-blue-950 text-white cursor-pointer hover:bg-blue-900"
                     @click="departmentModal = true">
                     Add Department
-                </button>
+                </button> -->
                 <!-- Department Modal -->
-                <Modal :isOpen="departmentModal" @close="departmentModal = false" modalSize="w-96">
+                <!-- <Modal :isOpen="departmentModal" @close="departmentModal = false" modalSize="w-96">
                     <h2 class="text-xl font-semibold mb-4">Add Department</h2>
                     <form>
                         <FormInput formLabel="Department Name" labelFor="department" formInputType="input"
@@ -85,7 +78,7 @@
                             Add
                         </button>
                     </form>
-                </Modal>
+                </Modal> -->
             </div>
             <Table :headers="currentHeaders" :rows="currentRows" />
         </div>
@@ -131,7 +124,7 @@ const accountOptions = [
     { id: "3", label: "NOC BPRF" },
     { id: "4", label: "Cloud 5" },
     { id: "5", label: "NOC" },
-]
+];
 
 // User Form
 const userForm = ref({
@@ -167,7 +160,6 @@ onMounted(() => {
     currentRows.value = tableSets.totalItems.rows;
 });
 
-
 // Escape key event listener (closes the modal)
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -176,7 +168,7 @@ document.addEventListener("keydown", (event) => {
         departmentModal.value = false;
         showModal.value = false;
     }
-})
+});
 </script>
 
 <style scoped></style>

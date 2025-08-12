@@ -1,26 +1,16 @@
 <template>
+
     <Head title="Dashboard" />
     <div class="p-10">
         <h1 class="text-2xl font-bold mb-5">Dashboard</h1>
 
-        <div class="flex justify-left gap-3 px-2 items-stretch flex-wrap">
-            <DashboardCard
-                v-for="card in dashboardCards"
-                :key="card.type"
-                :cardTitle="card.title"
-                :totalItem="card.total"
-                :faIcon="card.icon"
-                :faSize="'lg'"
-                @card-click="() => showTable(card.type)"
-            />
+        <div class="flex justify-stretch gap-5 items-stretch flex-wrap">
+            <DashboardCard v-for="card in dashboardCards" :key="card.type" :cardTitle="card.title"
+                :totalItem="card.total" :faIcon="card.icon" :faSize="'lg'" @card-click="() => showTable(card.type)" />
         </div>
 
         <!-- table -->
-        <Table
-            :headers="currentHeaders"
-            :rows="currentRows"
-            v-if="currentHeaders.length"
-        />
+        <Table :headers="currentHeaders" :rows="currentRows" v-if="currentHeaders.length" />
     </div>
 </template>
 <script setup>
