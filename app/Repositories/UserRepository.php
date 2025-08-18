@@ -17,4 +17,9 @@ class UserRepository
     {
         return User::where('username', $username)->first();
     }
+
+    public function getAllUsers()
+    {
+        return User::all();
+    }
 }

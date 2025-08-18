@@ -17,18 +17,8 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function login(Request $request)
+    public function getAllUsers()
     {
-        $validated = $request->validate([
-            'username' => 'string|required',
-            'password' => 'string|required',
-        ]);
-        $user = $this->userRepository->findByUsername($validated['username']);
-        // if ($user && Hash::check($validated['password'], $user->password)) {
-        if (Auth::login($user)) {
-            return true;
-        }
-        // }
-        return false;
+        return $this->userRepository->getAllUsers() ?? false;
     }
 }

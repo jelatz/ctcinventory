@@ -4,12 +4,7 @@
         <div class="mb-4 flex items-center justify-between">
             <div>
                 <label for="pages" class="mr-2">Show:</label>
-                <select
-                    id="pages"
-                    class="rounded-md border px-2 py-1"
-                    v-model="selectedPageSize"
-                    @change="emitUpdate"
-                >
+                <select id="pages" class="rounded-md border px-2 py-1" v-model="selectedPageSize" @change="emitUpdate">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
@@ -18,13 +13,8 @@
                 <p class="inline-block ml-2">Entries</p>
             </div>
             <div>
-                <input
-                    type="text"
-                    v-model="searchQuery"
-                    @input="debouncedSearch"
-                    placeholder="Search..."
-                    class="rounded-md border px-2 py-1 ml-4"
-                />
+                <input type="text" v-model="searchQuery" @input="debouncedSearch" placeholder="Search..."
+                    class="rounded-md border px-2 py-1 ml-4" />
             </div>
         </div>
 
@@ -32,12 +22,8 @@
         <table class="min-w-full border border-gray-300">
             <thead class="bg-gray-100">
                 <tr>
-                    <th
-                        v-for="(header, index) in headers"
-                        :key="index"
-                        @click="toggleSort(index)"
-                        class="text-left px-4 py-2 border-b cursor-pointer select-none"
-                    >
+                    <th v-for="(header, index) in headers" :key="index" @click="toggleSort(index)"
+                        class="text-left px-4 py-2 border-b cursor-pointer select-none">
                         {{ header }}
                         <span v-if="sortColumn === index">
                             {{ sortDirection === "asc" ? "▲" : "▼" }}
@@ -46,20 +32,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    v-for="(row, rowIndex) in rows"
-                    :key="rowIndex"
-                    class="even:bg-gray-100"
-                >
-                    <td
-                        v-for="(value, colIndex) in row"
-                        :key="colIndex"
-                        class="px-4 py-2 border-b"
-                    >
-                        {{ value }}
+                <tr v-for="(row, rowIndex) in rows" :key="rowIndex" class="even:bg-gray-100">
+                    <td v-for="(value, colIndex) in row" :key="colIndex" class="px-4 py-2 border-b">
+                        <!-- If parent provides a slot for this column -->
+                        <slot :name="headers[colIndex]" :row="row" :value="value" :rowIndex="rowIndex"
+                            :colIndex="colIndex">
+                            <!-- Fallback: just render text -->
+                            {{ value }}
+                        </slot>
                     </td>
                 </tr>
             </tbody>
+
         </table>
 
         <!-- Pagination -->
@@ -72,21 +56,13 @@
                 of {{ totalItems }} entries
             </div>
             <div class="flex items-center">
-                <button
-                    @click="prevPage"
-                    :disabled="currentPage === 1"
-                    class="px-3 py-1 rounded border mr-2 disabled:opacity-50"
-                >
+                <button @click="prevPage" :disabled="currentPage === 1"
+                    class="px-3 py-1 rounded border mr-2 disabled:opacity-50">
                     Previous
                 </button>
-                <span class="mx-2"
-                    >Page {{ currentPage }} of {{ totalPages }}</span
-                >
-                <button
-                    @click="nextPage"
-                    :disabled="currentPage === totalPages"
-                    class="px-3 py-1 rounded border ml-2 disabled:opacity-50"
-                >
+                <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+                <button @click="nextPage" :disabled="currentPage === totalPages"
+                    class="px-3 py-1 rounded border ml-2 disabled:opacity-50">
                     Next
                 </button>
             </div>

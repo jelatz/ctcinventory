@@ -19,6 +19,32 @@ class UserController extends Controller
 
     public function index()
     {
-        return Inertia::render('Users/Index');
+        $users = $this->userService->getAllUsers();
+        return Inertia::render('Users/Index', [
+            'users' => $users
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'profile_picture' => 'nullable|image|max:2048',
+            'username' => 'required|string|max:255|unique:users,username',
+            'is_active' => 'boolean',
+            'real_name' => 'required|string|max:255',
+        ]);
+
+        $password = bin2hex(random_bytes(8)); // 16 characters long alphanumeric string
+        $data['password'] = $password;
+        // Store original password temporarily to show or email to user if needed
+
+        $data['password'] = Hash::make($data['password']);
+        $data['is_active'] = $data['is_active'] ?? false;
+
+        // Create user logic here
+        // ...
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 }
