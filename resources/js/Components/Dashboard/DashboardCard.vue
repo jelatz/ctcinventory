@@ -5,8 +5,10 @@
         <div class="flex items-start space-y-5 flex-col justify-between">
             <h1 class="text-md font-semibold">{{ cardTitle }}</h1>
             <div class="flex items-center justify-between w-full">
-                <fa :icon="faIcon" :size="faSize" />
-                <p class="text-end text-xl">{{ totalItem }}</p>
+                <div class="text-left">
+                    <fa :icon="faIcon" :size="faSize" />
+                </div>
+                <p class="text-xl text-right">{{ totalItem }}</p>
             </div>
         </div>
     </button>
@@ -18,6 +20,7 @@ defineProps({
     cardTitle: String,
     faIcon: Array,
     faSize: String,
+    faClass: String,
 });
 </script>
 

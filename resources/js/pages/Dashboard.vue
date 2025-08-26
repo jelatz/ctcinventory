@@ -6,7 +6,8 @@
 
         <div class="flex justify-evenly **:flex-1 gap-5 items-stretch flex-wrap">
             <DashboardCard v-for="card in dashboardCards" :key="card.type" :cardTitle="card.title"
-                :totalItem="card.total" :faIcon="card.icon" :faSize="'lg'" @card-click="() => showTable(card.type)" />
+                :totalItem="card.total" :faIcon="card.icon" :faSize="'lg'" faClass="text-left"
+                @card-click="() => showTable(card.type)" />
         </div>
 
         <!-- table -->
