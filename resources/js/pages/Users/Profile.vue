@@ -53,8 +53,8 @@
                                 ? true
                                 : false
                                 " />
-                        <FormInput formInputType="input" formLabel="Real Name" labelFor="realName" inputClass="w-full"
-                            inputType="text" v-model="updateProfile.realName" />
+                        <FormInput formInputType="input" formLabel="Name" labelFor="name" inputClass="w-full"
+                            inputType="text" v-model="updateProfile.name" />
                         <FormInput formInputType="input" formLabel="Password" labelFor="password" inputClass="w-full"
                             inputType="password" v-model="updateProfile.password" />
                         <FormInput formInputType="input" formLabel="Date Added" labelFor="dateAdded" inputClass="w-full"
@@ -101,7 +101,6 @@ const updateProfile = useForm({
 });
 
 const submitChangePassword = () => {
-    console.log("yes");
     changePassForm.post(route("change.password"), {
         onError: (e) => {
             console.log(e);

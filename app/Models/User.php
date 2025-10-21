@@ -48,4 +48,34 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role')->withTimestamps();
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permission')->withTimestamps();
+    }
+
+
+    public function hasRole($roleName)
+    {
+        return $this->roles()->where('name', $roleName)->exists();
+    }
+
+    public function hasPermission($permissionName)
+    {
+        // Check direct permission
+        if ($this->permissions()->where('name', $permissionName)->exists()) {
+            return true;
+        }
+
+        // Check via roles
+        return $this->roles()
+            ->whereHas('permissions', function ($q) use ($permissionName) {
+                $q->where('name', $permissionName);
+            })->exists();
+    }
 }
