@@ -8,6 +8,8 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Item\ItemController;
 use App\Http\Controllers\Transaction\TransactionController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\RoleController;
+use App\Http\Controllers\User\PermissionController;
 use Illuminate\Support\Facades\Hash;
 
 // Route::inertia('/', 'Home')->name('home');
@@ -30,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('update.profile');
+
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

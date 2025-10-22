@@ -72,6 +72,26 @@
             </span>
             Transactions
             </Link>
+            <Link @click="$emit('close-dropdown')" :href="route('roles.index')"
+                class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block" :class="{
+                    'bg-[#e2e2e2] text-[#162556]':
+                        $page.component === 'Role/Index',
+                }">
+            <span class="absolute left-4">
+                <fa icon="fa-solid fa-box" size="lg"></fa>
+            </span>
+            Roles
+            </Link>
+            <Link @click="$emit('close-dropdown')" :href="route('permissions.index')"
+                class="relative hover:bg-[#e3e2e2] hover:text-[#162556] w-full text-left py-3 pl-16 block" :class="{
+                    'bg-[#e2e2e2] text-[#162556]':
+                        $page.component === 'Permission/Index',
+                }">
+            <span class="absolute left-4">
+                <fa icon="fa-solid fa-box" size="lg"></fa>
+            </span>
+            Permissions
+            </Link>
         </div>
     </div>
 </template>
