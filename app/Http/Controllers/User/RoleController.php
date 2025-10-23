@@ -3,33 +3,38 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Services\UserService;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use Inertia\Inertia;
+use App\Services\RoleService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    protected $userService;
+    protected $roleService;
 
-    public function __contstruct(UserService $userService)
+    public function __construct(RoleService $roleService)
     {
-        $this->userService = $userService;
+        $this->roleService = $roleService;
     }
 
     public function index()
     {
-        return Inertia::render('Roles/Index');
+        return Inertia::render('Roles/Index', [
+            'roles' => $this->roleService->getAllRoles(),
+        ]);
     }
 
-    public function changePassword(Request $request)
+    public function store(Request $request)
     {
-        dd($request->all());
-    }
+        $request->validate([
+            'role' => 'required|string|max:255',
+            'roleDescription' => 'nullable|string|max:500',
+        ]);
 
-    public function updateProfile(Request $request)
-    {
-        dd($request->all());
+        $this->roleService->createRole([
+            'name' => $request->role,
+            'description' => $request->roleDescription,
+        ]);
+
+        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
     }
 }

@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('update.profile');
 
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
