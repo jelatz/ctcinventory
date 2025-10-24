@@ -24,7 +24,7 @@
                 <tr>
                     <th v-for="(header, index) in headers" :key="index" @click="toggleSort(index)"
                         class="text-left px-4 py-2 border-b cursor-pointer select-none">
-                        {{ header }}
+                        {{ header.label }}
                         <span v-if="sortColumn === index">
                             {{ sortDirection === "asc" ? "▲" : "▼" }}
                         </span>
@@ -32,18 +32,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(row, rowIndex) in rows" :key="rowIndex" class="even:bg-gray-100">
-                    <td v-for="(value, colIndex) in row" :key="colIndex" class="px-4 py-2 border-b">
-                        <!-- If parent provides a slot for this column -->
-                        <slot :name="headers[colIndex]" :row="row" :value="value" :rowIndex="rowIndex"
+                <tr v-for="(row, rowIndex) in rows" :key="row.id ?? rowIndex" class="even:bg-gray-100">
+                    <td v-for="(header, colIndex) in headers" :key="colIndex" class="px-4 py-2 border-b">
+                        <!-- Named slot support -->
+                        <slot :name="header.label" :row="row" :value="row[header.key]" :rowIndex="rowIndex"
                             :colIndex="colIndex">
-                            <!-- Fallback: just render text -->
-                            {{ value }}
+                            {{ row[header.key] }}
                         </slot>
                     </td>
                 </tr>
             </tbody>
-
         </table>
 
         <!-- Pagination -->
@@ -77,8 +75,8 @@ import debounce from "lodash/debounce";
 const emit = defineEmits(["fetch"]);
 
 const props = defineProps({
-    headers: Array,
-    rows: Array, // Current page's data only
+    headers: Array, // [{ label: "Action", key: "action" }, { label: "Role Name", key: "name" }, ...]
+    rows: Array, // Each row should be an object
     totalItems: Number,
 });
 
@@ -88,7 +86,7 @@ const searchQuery = ref("");
 const sortColumn = ref(null);
 const sortDirection = ref("asc");
 
-// Emit params to parent
+// Emit parameters for parent data fetching
 function emitUpdate() {
     emit("fetch", {
         page: currentPage.value,
@@ -118,6 +116,7 @@ function prevPage() {
         emitUpdate();
     }
 }
+
 function nextPage() {
     if (currentPage.value < totalPages.value) {
         currentPage.value++;
@@ -137,7 +136,7 @@ function toggleSort(index) {
 }
 
 // Total pages
-const totalPages = computed(() => {
-    return Math.ceil(props.totalItems / selectedPageSize.value);
-});
+const totalPages = computed(() =>
+    Math.ceil(props.totalItems / selectedPageSize.value)
+);
 </script>

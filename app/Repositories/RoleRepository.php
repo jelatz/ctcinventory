@@ -26,4 +26,13 @@ class RoleRepository
     {
         return $this->role->create($data);
     }
+
+    public function deleteRole($roleId): bool
+    {
+        $role = $this->role->find($roleId);
+        if ($role) {
+            return $role->delete();
+        }
+        return false;
+    }
 }
