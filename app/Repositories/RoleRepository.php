@@ -27,6 +27,15 @@ class RoleRepository
         return $this->role->create($data);
     }
 
+    public function updateRole($roleId, array $data): bool
+    {
+        $role = $this->role->find($roleId);
+        if ($role) {
+            return $role->update($data);
+        }
+        return false;
+    }
+
     public function deleteRole($roleId): bool
     {
         $role = $this->role->find($roleId);

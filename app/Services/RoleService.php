@@ -25,6 +25,11 @@ class RoleService
         return $this->roleRepository->createRole($data);
     }
 
+    public function updateRole($roleId, array $data)
+    {
+        return $this->roleRepository->updateRole($roleId, $data);
+    }
+
     public function deleteRole($roleId)
     {
         return $this->roleRepository->deleteRole($roleId);
