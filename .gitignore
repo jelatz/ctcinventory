@@ -1,0 +1,49 @@
+# Laravel environment
+.env
+.env.backup
+.env.local
+.env.testing
+.env.production
+
+# Node modules
+/node_modules
+/npm-debug.log*
+/yarn-error.log*
+/pnpm-debug.log*
+
+# Vendor directory
+/vendor
+/vendor.zip
+
+# Laravel storage
+/storage/*.key
+/storage/*.log
+/storage/debugbar
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/views
+/storage/app/public
+/public/storage
+
+# SQLite databases
+*.sqlite
+*.sqlite3
+database/*.sqlite
+
+# Vite / Build files
+/public/build
+/public/hot
+/resources/js/dist
+
+# IDE / Editor files
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+
+# OS / System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
