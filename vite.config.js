@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
+  assetsInclude: ["**/*.ttf"],
   plugins: [
     laravel({
       input: ["resources/css/app.css", "resources/js/app.js"],
@@ -15,6 +16,11 @@ export default defineConfig({
   server: {
     watch: {
       ignored: ["**/storage/framework/views/**"],
+    },
+  },
+  resolve: {
+    alias: {
+      "@": "/resources/js",
     },
   },
 });

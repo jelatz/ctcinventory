@@ -17,6 +17,8 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^2.3.8",
+        "jquery": "^3.7.1",
+        "select2": "^4.1.0-rc.0",
         "ziggy-js": "^2.6.0"
     }
 }

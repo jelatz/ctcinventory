@@ -2,11 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('Home');
-});
+Route::get('/', [AuthController::class, 'index']);
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
