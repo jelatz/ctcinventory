@@ -151,7 +151,7 @@ onUnmounted(() => {
         <!-- Label -->
         <label v-if="label && type !== 'hidden' && type !== 'button'" :for="inputId"
             class="block mb-1.5 text-md font-medium text-gray-700">
-            {{ label }} <span v-if="required" class="text-red-500">*</span>
+            {{ label }} : <span v-if="required" class="text-red-500">*</span>
         </label>
 
         <!-- Custom Select -->

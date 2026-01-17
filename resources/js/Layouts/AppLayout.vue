@@ -13,7 +13,7 @@ const toggleSidebar = () => {
 <template>
     <div class="min-h-screen bg-gray-100 grid grid-cols-[auto_1fr]">
         <!-- v-model passes state DOWN -->
-        <SideNav v-model:collapsed="sidebarCollapsed" />
+        <SideNav :collapsed="sidebarCollapsed" />
 
         <div>
             <!-- event comes UP -->

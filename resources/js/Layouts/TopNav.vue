@@ -1,6 +1,6 @@
 <script setup>
 import HamburgerIcon from '@/Components/Icons/HamburgerIcon.vue'
-import { User } from 'lucide-vue-next'
+import { User, Bell } from 'lucide-vue-next'
 const emit = defineEmits(['toggle']);
 </script>
 
@@ -9,8 +9,11 @@ const emit = defineEmits(['toggle']);
         <button @click="emit('toggle')" class="cursor-pointer">
             <HamburgerIcon class="text-white" />
         </button>
-        <div>
-            <User class="text-white" />
+        <div class="flex items-center gap-5">
+            <Bell class="text-white cursor-pointer" />
+            <Link href="/profile">
+            <User class="text-white cursor-pointer outline rounded-full" />
+            </Link>
         </div>
     </div>
 </template>

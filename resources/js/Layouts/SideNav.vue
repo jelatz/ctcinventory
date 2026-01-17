@@ -86,14 +86,15 @@ const menu = [
         <!-- Logo -->
         <div class="p-6 flex items-center justify-between">
             <img src="../../images/ctc-logo.webp" class="transition-all duration-300"
-                :class="collapsed ? 'w-10 mx-auto py-2' : 'w-full'" />
+                :class="collapsed ? 'w-full mx-auto py-2' : 'w-full'" />
         </div>
         <!-- v-if="hasPermission(item.permission)" -->
         <!-- Menu -->
         <ul class="text-white">
             <li v-for="item in menu" :key="item.href">
                 <!-- Parent -->
-                <div class=" flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-blue-900"
+                <div v-if="item.children"
+                    class=" flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-blue-900"
                     :class="{ 'bg-blue-900': isActive(item.href) }"
                     @click="item.children ? toggleMenu(item.href) : null">
                     <div class="flex items-center gap-3">
@@ -114,6 +115,18 @@ const menu = [
                         ▶
                     </span>
                 </div>
+
+                <!-- NO children → normal Link -->
+                <Link v-else :href="item.href" class="flex items-center px-5 py-4 hover:bg-blue-900"
+                    :class="{ 'bg-blue-900': isActive(item.href) }">
+                    <span class="w-5 text-center mr-5">
+                        <component :is="item.icon" />
+                    </span>
+
+                    <span v-if="!collapsed">
+                        {{ item.label }}
+                    </span>
+                </Link>
 
                 <!-- Submenu -->
                 <transition enter-active-class="transition-all duration-300"
