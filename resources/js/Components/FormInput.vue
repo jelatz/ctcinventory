@@ -144,6 +144,13 @@ onMounted(() => {
 onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside);
 });
+
+const handleEnter = () => {
+    if (filteredOptions.value.length === 0) return
+
+    // Select the first matched option
+    selectOption(filteredOptions.value[0])
+}
 </script>
 
 <template>
@@ -202,7 +209,7 @@ onUnmounted(() => {
                 <div class="p-2 border-b border-gray-100">
                     <input type="text" v-model="searchQuery"
                         class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
-                        placeholder="Search..." @click.stop>
+                        placeholder="Search..." @click.stop @keydown.enter="handleEnter">
                 </div>
 
                 <!-- Options -->

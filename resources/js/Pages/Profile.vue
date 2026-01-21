@@ -17,10 +17,25 @@ const onFileChange = (e) => {
     preview.value = URL.createObjectURL(file)
 }
 
+const roles = [
+    { id: 1, text: 'Admin' },
+    { id: 2, text: 'User' },
+]
+
+const departments = [
+    { id: 1, text: 'HR' },
+    { id: 2, text: 'IT' },
+    { id: 3, text: 'Finance' }
+]
+
 // Form 
+const submitForm = () => {
+    console.log('Form submitted');
+}
+
 const form = reactive({
     username: '',
-    password: '',
+    role: '',
 })
 </script>
 
@@ -55,19 +70,13 @@ const form = reactive({
         </div>
 
         <div class="w-full px-20 mt-20">
-            <form>
+            <form @submit.prevent="submitForm">
                 <div class="grid grid-cols-4 gap-x-10">
-                    <FormInput v-model="form.username" label="Username :" placeholder="Enter Username" required />
-                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
-                        required />
-                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
-                        required />
-                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
-                        required />
-                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
-                        required />
-                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
-                        required />
+                    <FormInput v-model="form.username" label="Username" placeholder="Enter Username" required />
+                    <FormInput v-model="form.role" type="select" label="Role" placeholder="Select Role" required
+                        :options="roles" />
+                    <FormInput v-model="form.department" label="Department" placeholder="Select Department"
+                        type="select" :options="departments" />
                 </div>
             </form>
         </div>
