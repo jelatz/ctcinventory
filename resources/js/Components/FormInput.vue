@@ -265,7 +265,7 @@ const handleEnter = () => {
 
         <!-- Button -->
         <button v-else-if="type === 'button'" :type="type" @click="emit('click')" :disabled="disabled"
-            class="w-full px-5 py-2.5 text-sm font-medium text-white bg-blue-950 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+            class="w-full px-5 py-2.5 text-sm font-medium text-white bg-[#0169B1] rounded-lg hover:bg-[#E55207] focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
             {{ label || modelValue }}
         </button>
 

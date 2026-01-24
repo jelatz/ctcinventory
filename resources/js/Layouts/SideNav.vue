@@ -44,16 +44,17 @@ const menu = [
         children: [
             { label: 'All Users', href: '/users' },
             { label: 'Create User', href: '/users/create' },
+            { label: 'Employee List', href: '/employee/list' }
         ],
     },
     {
-        label: 'Items',
-        href: '/items',
+        label: 'Assets',
+        href: '/assets',
         icon: Boxes,
-        permission: 'manage_items',
+        permission: 'manage_assets',
         children: [
-            { label: 'All Items', href: '/items' },
-            { label: 'Add Item', href: '/items/create' },
+            { label: 'All Assets', href: '/assets' },
+            { label: 'Add Asset', href: '/assets/create' },
         ],
     },
     {
@@ -95,7 +96,7 @@ const menu = [
                 <!-- Parent -->
                 <div v-if="item.children"
                     class=" flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-blue-900"
-                    :class="{ 'bg-blue-900': isActive(item.href) }"
+                    :class="{ 'bg-[#E55207]': isActive(item.href) }"
                     @click="item.children ? toggleMenu(item.href) : null">
                     <div class="flex items-center gap-3">
                         <!-- Icon -->
@@ -118,7 +119,7 @@ const menu = [
 
                 <!-- NO children → normal Link -->
                 <Link v-else :href="item.href" class="flex items-center px-5 py-4 hover:bg-blue-900"
-                    :class="{ 'bg-blue-900': isActive(item.href) }">
+                    :class="{ 'bg-[#E55207]': isActive(item.href) }">
                     <span class="w-5 text-center mr-5">
                         <component :is="item.icon" />
                     </span>
