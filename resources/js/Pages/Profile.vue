@@ -71,12 +71,14 @@ const form = reactive({
 
         <div class="w-full px-20 mt-20">
             <form @submit.prevent="submitForm">
-                <div class="grid grid-cols-4 gap-x-10">
+                <div class="grid grid-cols-1 gap-x-10 items-center w-150 mx-auto">
                     <FormInput v-model="form.username" label="Username" placeholder="Enter Username" required />
-                    <FormInput v-model="form.role" type="select" label="Role" placeholder="Select Role" required
-                        :options="roles" />
-                    <FormInput v-model="form.department" label="Department" placeholder="Select Department"
-                        type="select" :options="departments" />
+                    <h1 class="text-2xl font-bold mt-10">Change Passowrd</h1>
+                    <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
+                        required />
+                    <FormInput v-model="form.password_confirmation" type="password" label="Confirm Password"
+                        placeholder="Enter Confirm Password" required />
+                    <FormInput type="button" @click="submitForm" label="Update Password" />
                 </div>
             </form>
         </div>
