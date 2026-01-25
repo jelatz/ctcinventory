@@ -2,7 +2,7 @@
 import { onMounted } from 'vue'
 import { useToast } from '@/Composables/useToast'
 import Cards from '@/Components/Cards.vue'
-import { Home, Users, Boxes, Files, ArrowLeftRight } from 'lucide-vue-next'
+import { Home, Users, Boxes, Files, ArrowLeftRight, Laptop } from 'lucide-vue-next'
 
 import Toast from '@/Components/Toast.vue'
 const { add } = useToast()
@@ -10,9 +10,12 @@ const { add } = useToast()
 const cards = [
     {
         id: 1,
-        title: 'Total Assets',
+        title: 'Laptops',
+        unassignedValue: '10',
+        inRepairValue: '10',
         value: '100',
-        icon: Boxes,
+        totalValue: '200',
+        icon: Laptop,
     },
     {
         id: 2,
@@ -45,7 +48,9 @@ onMounted(() => {
         <h1 class="text-2xl font-bold">Dashboard</h1>
 
         <div class="grid grid-cols-4 gap-10 mt-5">
-            <Cards v-for="card in cards" :key="card.id" :title="card.title" :value="card.value" :icon="card.icon" />
+            <Cards v-for="card in cards" :key="card.id" :title="card.title" :value="card.value" :icon="card.icon"
+                :unassignedValue="card.unassignedValue" :inRepairValue="card.inRepairValue"
+                :totalValue="card.totalValue" />
         </div>
     </div>
 </template>
