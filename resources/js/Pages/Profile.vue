@@ -73,7 +73,7 @@ const form = reactive({
             <form @submit.prevent="submitForm">
                 <div class="grid grid-cols-1 gap-x-10 items-center w-150 mx-auto">
                     <FormInput v-model="form.username" label="Username" placeholder="Enter Username" required />
-                    <h1 class="text-2xl font-bold mt-10">Change Passowrd</h1>
+                    <h1 class="text-2xl font-bold mt-10 mb-3">Change Passowrd</h1>
                     <FormInput v-model="form.password" type="password" label="Password" placeholder="Enter Password"
                         required />
                     <FormInput v-model="form.password_confirmation" type="password" label="Confirm Password"

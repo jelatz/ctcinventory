@@ -1,10 +1,10 @@
 <script setup>
 const props = defineProps({
     title: String,
-    value: String,
+    assignedValue: String,
     unassignedValue: String,
     inRepairValue: String,
-    icon: String,
+    icon: [Object, Function],
     totalValue: String,
 })
 </script>
@@ -21,7 +21,7 @@ const props = defineProps({
         </div>
         <div class="flex items-center justify-between **:text-xl **:font-bold **:text-gray-500">
             <p class="text-gray-500 text-xl font-bold">Assigned :</p>
-            <p>{{ value }}</p>
+            <p>{{ assignedValue }}</p>
         </div>
         <div v-if="unassignedValue" class="flex items-center justify-between **:text-xl **:font-bold **:text-gray-500">
             <p>Unassigned :</p>
