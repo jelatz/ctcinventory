@@ -14,7 +14,7 @@ const props = defineProps({
     },
     // Data is now the current page's data from the server
     data: {
-        type: Array,
+        type: Array || Object || Function,
         required: true
     },
     // New prop: Total number of items in the database (required for pagination)
@@ -115,7 +115,7 @@ const endItem = computed(() => Math.min(currentPage.value * pageSize.value, tota
 </script>
 
 <template>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto block">
         <div class="flex justify-between items-center mb-4">
             <!-- Per Page Selector -->
             <select name="select" id="limit" :value="pageSize" @change="handlePageSizeChange"
