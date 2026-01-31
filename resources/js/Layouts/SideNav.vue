@@ -22,8 +22,19 @@ const hasPermission = (perm) => {
     return permissions.value.includes(perm)
 }
 
-const isActive = (href) => {
-    return page.url === href || page.url.startsWith(href + '/')
+// const isActive = (href) => {
+//     return page.url === href || page.url.startsWith(href + '/')
+// }
+
+const isActive = (href, children = []) => {
+    const relativeHref = href.replace(window.location.origin, '');
+    if (page.url === relativeHref || page.url.startsWith(relativeHref + '/')) return true;
+
+    // Check children
+    return children.some(child => {
+        const childHref = child.href.replace(window.location.origin, '');
+        return page.url === childHref || page.url.startsWith(childHref + '/');
+    });
 }
 
 const toggleMenu = (href) => {
@@ -33,43 +44,42 @@ const toggleMenu = (href) => {
 const menu = [
     {
         label: 'Dashboard',
-        href: '/dashboard',
+        href: route('dashboard'),
         icon: Home,
     },
     {
         label: 'Users',
-        href: '/users',
+        href: route('users.index'),
         icon: Users,
         permission: 'manage_users',
         children: [
-            { label: 'All Users', href: '/users' },
-            { label: 'Create User', href: '/users/create' },
-            { label: 'Employee List', href: '/employee/list' }
+            { label: 'All Users', href: route('users.index') },
+            { label: 'Employee List', href: route('employees.index') }
         ],
     },
     {
         label: 'Assets',
-        href: '/assets',
+        href: route('assets.index'),
         icon: Boxes,
         permission: 'manage_assets',
-        children: [
-            { label: 'All Assets', href: '/assets' },
-            { label: 'Add Asset', href: '/assets/create' },
-        ],
+        // children: [
+        //     { label: 'All Assets', href: '/assets' },
+        //     { label: 'Add Asset', href: '/assets/create' },
+        // ],
     },
     {
         label: 'Movement',
-        href: 'movement',
+        href: route('movements.index'),
         icon: ArrowLeftRight,
         permission: 'manage_movement',
-        children: [
-            { label: 'All Movement', href: '/movement' },
-            { label: 'Add Movement', href: '/movement/create' },
-        ],
+        // children: [
+        //     { label: 'All Movements', href: '/movement' },
+        //     { label: 'Add Movement', href: '/movement/create' },
+        // ],
     },
     {
         label: 'Reports',
-        href: '/reports',
+        href: route('reports.index'),
         icon: Files,
         permission: 'view_reports',
     },
@@ -96,7 +106,7 @@ const menu = [
                 <!-- Parent -->
                 <div v-if="item.children"
                     class=" flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-blue-900"
-                    :class="{ 'bg-[#E55207]': isActive(item.href) }"
+                    :class="{ 'bg-[#E55207]': isActive(item.href, item.children) }"
                     @click="item.children ? toggleMenu(item.href) : null">
                     <div class="flex items-center gap-3">
                         <!-- Icon -->
@@ -137,8 +147,8 @@ const menu = [
                     <ul v-if="item.children && openMenu === item.href && !collapsed"
                         class="bg-blue-900/50 overflow-hidden">
                         <li v-for="child in item.children" :key="child.href">
-                            <Link :href="child.href" class="block pl-14 pr-6 py-3 text-sm hover:bg-blue-800"
-                                :class="{ 'bg-blue-800': isActive(child.href) }">
+                            <Link :href="child.href" class="block pl-14 pr-6 py-4 text-sm hover:bg-blue-800"
+                                :class="{ 'bg-[#E55207]': isActive(child.href) }">
                                 {{ child.label }}
                             </Link>
                         </li>

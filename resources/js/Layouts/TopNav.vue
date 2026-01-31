@@ -25,7 +25,7 @@ onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside);
 })
 </script>
-
+jewc
 <template>
     <div class="bg-blue-950 w-full flex justify-between items-center p-5">
         <button @click="emit('toggle')" class="cursor-pointer">
@@ -46,11 +46,11 @@ onUnmounted(() => {
                     </ul>
                 </div>
             </div>
-            <Link href="/profile">
+            <Link :href="route('profile')">
             <User class="text-white cursor-pointer outline rounded-full" />
             </Link>
         </div>
-    </div> 
+    </div>
 </template>
 
 <style lang="scss" scoped></style>
