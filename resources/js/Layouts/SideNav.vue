@@ -68,6 +68,12 @@ const menu = [
         // ],
     },
     {
+        label: 'Categories',
+        href: route('categories.index'),
+        icon: Boxes,
+        permission: 'manage_categories',
+    },
+    {
         label: 'Movement',
         href: route('movements.index'),
         icon: ArrowLeftRight,
@@ -106,7 +112,6 @@ const menu = [
                 <!-- Parent -->
                 <div v-if="item.children"
                     class=" flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-blue-900"
-                    :class="{ 'bg-[#E55207]': isActive(item.href, item.children) }"
                     @click="item.children ? toggleMenu(item.href) : null">
                     <div class="flex items-center gap-3">
                         <!-- Icon -->

@@ -25,9 +25,9 @@ onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside);
 })
 </script>
-jewc
+
 <template>
-    <div class="bg-blue-950 w-full flex justify-between items-center p-5">
+    <div class="bg-blue-950 w-full flex justify-between items-center px-5 py-8.5">
         <button @click="emit('toggle')" class="cursor-pointer">
             <HamburgerIcon class="text-white" />
         </button>

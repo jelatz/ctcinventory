@@ -14,7 +14,7 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="grid place-items-center pt-36">
+    <div class="grid place-items-center pt-20">
         <img src="../../../images/ctc-logo.webp" alt="">
         <h1 class="text-6xl font-bold mt-10">Inventory System</h1>
         <h2 class="text-3xl font-semibold mt-20">Login</h2>

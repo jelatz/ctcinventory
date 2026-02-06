@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CategoryConrtoller;
 
 Route::get('/', [AuthController::class, 'index']);
 
@@ -33,6 +34,12 @@ Route::controller(AssetController::class)->prefix('assets')->group(function () {
     Route::get('/', 'index')->name('assets.index');
     Route::put('/{asset}', 'update')->name('assets.update');
     Route::get('/export/excel', 'export')->name('assets.export');
+});
+
+Route::controller(CategoryConrtoller::class)->prefix('categories')->group(function () {
+    Route::get('/', 'index')->name('categories.index');
+    Route::put('/{category}', 'update')->name('categories.update');
+    Route::get('/export/excel', 'export')->name('categories.export');
 });
 
 Route::controller(MovementController::class)->prefix('movements')->group(function () {
