@@ -10,7 +10,7 @@ const confirm = useConfirm()
 
 // Offcanvas state
 const showOffcanvas = ref(false)
-const mode = ref('add') // 'add' or 'edit'
+const mode = ref('add')
 const selectedCategory = ref(null)
 
 // Categories table data
