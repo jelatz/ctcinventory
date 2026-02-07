@@ -1,7 +1,7 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3'
 import { computed, ref } from 'vue'
-import { Home, Users, Boxes, Files, ArrowLeftRight } from 'lucide-vue-next'
+import { Home, Users, Boxes, Files, ArrowLeftRight, ChartColumnStacked, User, IdCardLanyard } from 'lucide-vue-next'
 
 
 const props = defineProps({
@@ -53,8 +53,8 @@ const menu = [
         icon: Users,
         permission: 'manage_users',
         children: [
-            { label: 'All Users', href: route('users.index') },
-            { label: 'Employee List', href: route('employees.index') }
+            { label: 'All Users', href: route('users.index'), icon: User },
+            { label: 'Employee List', href: route('employees.index'), icon: IdCardLanyard }
         ],
     },
     {
@@ -70,7 +70,7 @@ const menu = [
     {
         label: 'Categories',
         href: route('categories.index'),
-        icon: Boxes,
+        icon: ChartColumnStacked,
         permission: 'manage_categories',
     },
     {
@@ -149,12 +149,18 @@ const menu = [
                     leave-active-class="transition-all duration-200" enter-from-class="opacity-0 max-h-0"
                     enter-to-class="opacity-100 max-h-40" leave-from-class="opacity-100 max-h-40"
                     leave-to-class="opacity-0 max-h-0">
-                    <ul v-if="item.children && openMenu === item.href && !collapsed"
-                        class="bg-blue-900/50 overflow-hidden">
+                    <ul v-if="item.children && openMenu === item.href" class="bg-blue-900/50 overflow-hidden">
                         <li v-for="child in item.children" :key="child.href">
-                            <Link :href="child.href" class="block pl-14 pr-6 py-4 text-sm hover:bg-blue-800"
+                            <Link :href="child.href" class="flex items-center pl-5 pr-6 py-4 text-sm hover:bg-blue-800"
                                 :class="{ 'bg-[#E55207]': isActive(child.href) }">
-                                {{ child.label }}
+                                <div class="flex items-center gap-3">
+                                    <span class="w-5 text-center mr-5">
+                                        <component :is="child.icon" />
+                                    </span>
+                                    <span v-if="!collapsed">
+                                        {{ child.label }}
+                                    </span>
+                                </div>
                             </Link>
                         </li>
                     </ul>

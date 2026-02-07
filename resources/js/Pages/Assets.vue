@@ -106,6 +106,12 @@ const deleteAsset = async (asset) => {
         assets.value = assets.value.filter(a => a !== asset)
     }
 }
+
+// Export assets
+const exportAssets = () => {
+    console.log('Exporting assets...')
+    // Implementation for export functionality
+}
 </script>
 
 <template>
@@ -114,10 +120,16 @@ const deleteAsset = async (asset) => {
             <h1 class="font-bold text-3xl text-slate-800">Assets</h1>
         </div>
 
-        <button @click="openOffcanvas('add')"
-            class="bg-blue-950 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all my-10 ml-auto block">
-            Add Asset
-        </button>
+        <div class="flex justify-end w-fit ml-auto space-x-3 my-5">
+            <button @click="exportAssets"
+                class="bg-slate-600 hover:bg-slate-700 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all">
+                Export
+            </button>
+            <button @click="openOffcanvas('add')"
+                class="bg-blue-950 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all ml-auto block">
+                Add Asset
+            </button>
+        </div>
 
         <!-- Single Offcanvas for Add/Edit -->
         <Offcanvas v-model="showOffcanvas">
