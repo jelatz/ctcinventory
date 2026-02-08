@@ -3,10 +3,14 @@ import FormInput from '@/Components/FormInput.vue'
 import Table from '@/Components/Table.vue'
 import { ref, h } from 'vue'
 import { SquarePen, Trash2 } from 'lucide-vue-next'
+import { useOffcanvasForm } from '@/Composables/offCanvas.js'
+import Offcanvas from '@/Components/Offcanvas.vue'
+import { useConfirm } from '@/Composables/useConfirm'
+const confirm = useConfirm()
 
 
 const columns = [
-    { accessorKey: 'datetime', header: 'Date/Time' },
+    { accessorKey: 'date', header: 'Date' },
     { accessorKey: 'asset', header: 'Asset' },
     { accessorKey: 'movementType', header: 'Movement Type' },
     { accessorKey: 'from', header: 'From' },
@@ -37,7 +41,7 @@ const columns = [
                 }),
                 h(Trash2, {
                     class: 'w-5 h-5 cursor-pointer text-red-600 hover:text-red-800',
-                    onClick: () => deleteAsset(row.original)
+                    onClick: () => deleteMovement(row.original)
                 })
             ])
         }
@@ -45,9 +49,43 @@ const columns = [
 ]
 
 const movements = ref([
-    { datetime: '2023-01-15', asset: 'AST-001', movementType: 'Transfer', from: 'Room 101', to: 'Room 102', assignedTo: 'John Doe', status: 'Available' },
-    { datetime: '2023-02-10', asset: 'AST-002', movementType: 'Transfer', from: 'Room 102', to: 'Room 101', assignedTo: 'Jane Smith', status: 'In Use' }
+    { date: '2023-01-15', asset: 'AST-001', movementType: 'Transfer', from: 'Room 101', to: 'Room 102', assignedTo: 'John Doe', status: 'Available' },
+    { date: '2023-02-10', asset: 'AST-002', movementType: 'Transfer', from: 'Room 102', to: 'Room 101', assignedTo: 'Jane Smith', status: 'In Use' }
 ])
+
+
+const {
+    showOffcanvas,
+    mode,
+    form,
+    openOffcanvas,
+    applyChanges,
+    deleteRow
+} = useOffcanvasForm({
+    date: '',
+    asset: '',
+    movementType: '',
+    from: '',
+    to: '',
+    assignedTo: '',
+    status: 'Available'
+})
+
+// Delete Movement
+
+const deleteMovement = async (movement) => {
+    const ok = await confirm({
+        title: 'Delete Movement',
+        message: `Are you sure you want to delete movement for asset ${movement.asset} on ${movement.date}?`,
+        confirmText: 'Yes, Delete',
+        cancelText: 'Cancel'
+    })
+
+    if (ok) {
+        movements.value = movements.value.filter(m => m !== movement)
+    }
+}
+
 </script>
 
 <template>
@@ -61,7 +99,7 @@ const movements = ref([
             my-10 ml-auto block">
                 Export
             </button>
-            <button class="bg-blue-950 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all
+            <button @click="openOffcanvas('add')" class="bg-blue-950 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all
         my-10 ml-auto block">
                 New Movement
             </button>
@@ -75,6 +113,25 @@ const movements = ref([
             <FormInput type="select" label="Type" placeholder="Search" />
             <FormInput type="select" label="Status" placeholder="Search" />
         </div>
+        <Offcanvas v-model="showOffcanvas">
+            <div class="mt-2">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-4">
+                    {{ mode === 'add' ? 'Add New Movement' : 'Edit Movement' }}
+                </h2>
+
+                <div class="space-y-4">
+                    <FormInput type="date" label="Date" placeholder="Search" v-model="form.date" />
+                    <FormInput type="select" label="Asset" placeholder="Search" v-model="form.asset" />
+                    <FormInput type="select" label="Type" placeholder="Search" v-model="form.movementType" />
+                    <FormInput type="select" label="Status" placeholder="Search" v-model="form.status" />
+                </div>
+
+                <div class="w-full mt-8">
+                    <FormInput type="button" :label="mode === 'add' ? 'Add Movement' : 'Update Movement'"
+                        @click="applyChanges(movements)" />
+                </div>
+            </div>
+        </Offcanvas>
 
         <!-- Mail Table -->
         <Table :columns="columns" :data="movements" :total-row-count="movements.length" />
