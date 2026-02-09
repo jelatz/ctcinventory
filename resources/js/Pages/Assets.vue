@@ -1,6 +1,6 @@
 <script setup>
 import Offcanvas from '@/Components/Offcanvas.vue'
-import { ref, h } from 'vue'
+import { ref, h, onMounted, onUnmounted } from 'vue'
 import Table from '@/Components/Table.vue'
 import { SquarePen, Trash2 } from 'lucide-vue-next'
 import { useConfirm } from '@/composables/useConfirm'
@@ -112,6 +112,21 @@ const exportAssets = () => {
     console.log('Exporting assets...')
     // Implementation for export functionality
 }
+
+const handleKeyPress = (e) => {
+    if (e.key === 'Escape') {
+        closeOffcanvas()
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('keydown', handleKeyPress)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('keydown', handleKeyPress)
+})
+
 </script>
 
 <template>

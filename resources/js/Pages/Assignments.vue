@@ -2,7 +2,7 @@
 import FormInput from '@/Components/FormInput.vue'
 import Table from '@/Components/Table.vue'
 import { ref, h } from 'vue'
-import { SquarePen, Trash2 } from 'lucide-vue-next'
+import { SquarePen, Trash2, Eye } from 'lucide-vue-next'
 import { useOffcanvasForm } from '@/Composables/offCanvas.js'
 import Offcanvas from '@/Components/Offcanvas.vue'
 import { useConfirm } from '@/Composables/useConfirm'
@@ -41,16 +41,24 @@ const columns = [
                 }),
                 h(Trash2, {
                     class: 'w-5 h-5 cursor-pointer text-red-600 hover:text-red-800',
-                    onClick: () => deleteMovement(row.original)
+                    onClick: () => deleteAssignment(row.original)
+                }),
+                h(Eye, {
+                    class: 'w-5 h-5 cursor-pointer text-blue-600 hover:text-blue-800',
+                    onClick: () => viewAssignment(row.original)
                 })
             ])
         }
     }
 ]
 
-const movements = ref([
-    { date: '2023-01-15', asset: 'AST-001', movementType: 'Transfer', from: 'Room 101', to: 'Room 102', assignedTo: 'John Doe', status: 'Available' },
-    { date: '2023-02-10', asset: 'AST-002', movementType: 'Transfer', from: 'Room 102', to: 'Room 101', assignedTo: 'Jane Smith', status: 'In Use' }
+const viewAssignment = (assignment) => {
+    openOffcanvas('view', assignment)
+}
+
+const assignments = ref([
+    { date: '2023-01-15', asset: 'AST-001', assignmentType: 'Transfer', from: 'Room 101', to: 'Room 102', assignedTo: 'John Doe', status: 'Available' },
+    { date: '2023-02-10', asset: 'AST-002', assignmentType: 'Transfer', from: 'Room 102', to: 'Room 101', assignedTo: 'Jane Smith', status: 'In Use' }
 ])
 
 
@@ -60,7 +68,6 @@ const {
     form,
     openOffcanvas,
     applyChanges,
-    deleteRow
 } = useOffcanvasForm({
     date: '',
     asset: '',
@@ -68,21 +75,26 @@ const {
     from: '',
     to: '',
     assignedTo: '',
-    status: 'Available'
+    status: 'Available',
+    // Include the "Hidden" fields here
+    description: '',
+    condition: '',
+    verifiedBy: '',
+    serialNumber: ''
 })
 
 // Delete Movement
 
-const deleteMovement = async (movement) => {
+const deleteAssignment = async (assignment) => {
     const ok = await confirm({
-        title: 'Delete Movement',
-        message: `Are you sure you want to delete movement for asset ${movement.asset} on ${movement.date}?`,
+        title: 'Delete Assignment',
+        message: `Are you sure you want to delete assignment for asset ${assignment.asset} on ${assignment.date}?`,
         confirmText: 'Yes, Delete',
         cancelText: 'Cancel'
     })
 
     if (ok) {
-        movements.value = movements.value.filter(m => m !== movement)
+        assignments.value = assignments.value.filter(a => a !== assignment)
     }
 }
 
@@ -91,7 +103,7 @@ const deleteMovement = async (movement) => {
 <template>
     <div class="p-16 mx-auto">
         <div class="flex items-center justify-between mb-8">
-            <h1 class="font-bold text-3xl text-slate-800">Movements</h1>
+            <h1 class="font-bold text-3xl text-slate-800">Assignments</h1>
         </div>
 
         <div class="flex justify-end w-fit ml-auto space-x-5">
@@ -101,7 +113,7 @@ const deleteMovement = async (movement) => {
             </button>
             <button @click="openOffcanvas('add')" class="bg-blue-950 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg shadow-sm font-medium transition-all
         my-10 ml-auto block">
-                New Movement
+                New Assignment
             </button>
         </div>
 
@@ -116,25 +128,46 @@ const deleteMovement = async (movement) => {
         <Offcanvas v-model="showOffcanvas">
             <div class="mt-2">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-4">
-                    {{ mode === 'add' ? 'Add New Movement' : 'Edit Movement' }}
+                    {{ mode === 'add' ? 'Add' : mode === 'edit' ? 'Edit' : 'Full Details' }}
                 </h2>
 
-                <div class="space-y-4">
-                    <FormInput type="date" label="Date" placeholder="Search" v-model="form.date" />
-                    <FormInput type="select" label="Asset" placeholder="Search" v-model="form.asset" />
-                    <FormInput type="select" label="Type" placeholder="Search" v-model="form.movementType" />
-                    <FormInput type="select" label="Status" placeholder="Search" v-model="form.status" />
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <FormInput type="date" label="Date" v-model="form.date" :disabled="mode === 'view'" />
+                        <FormInput type="text" label="Asset ID" v-model="form.asset" :disabled="mode === 'view'" />
+                    </div>
+
+                    <FormInput type="text" label="Serial Number" v-model="form.serialNumber"
+                        :disabled="mode === 'view'" />
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <FormInput type="text" label="From" v-model="form.from" :disabled="mode === 'view'" />
+                        <FormInput type="text" label="To" v-model="form.to" :disabled="mode === 'view'" />
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-sm font-medium text-slate-700 mb-1">Movement Description</label>
+                        <textarea v-model="form.description" :disabled="mode === 'view'"
+                            class="border rounded-lg p-2 focus:ring-2 focus:ring-blue-500 disabled:bg-slate-50"
+                            rows="3"></textarea>
+                    </div>
+
+                    <FormInput type="text" label="Verified By" v-model="form.verifiedBy" :disabled="mode === 'view'" />
                 </div>
 
-                <div class="w-full mt-8">
-                    <FormInput type="button" :label="mode === 'add' ? 'Add Movement' : 'Update Movement'"
+                <div class="mt-8">
+                    <button v-if="mode === 'view'" @click="showOffcanvas = false"
+                        class="w-full py-3 bg-slate-100 rounded-xl font-bold">
+                        Close Details
+                    </button>
+                    <FormInput v-else type="button" :label="mode === 'add' ? 'Save' : 'Update'"
                         @click="applyChanges(movements)" />
                 </div>
             </div>
         </Offcanvas>
 
         <!-- Mail Table -->
-        <Table :columns="columns" :data="movements" :total-row-count="movements.length" />
+        <Table :columns="columns" :data="assignments" :total-row-count="assignments.length" />
 
     </div>
 </template>

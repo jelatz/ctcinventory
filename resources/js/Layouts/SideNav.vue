@@ -53,19 +53,9 @@ const menu = [
         icon: Users,
         permission: 'manage_users',
         children: [
-            { label: 'All Users', href: route('users.index'), icon: User },
-            { label: 'Employee List', href: route('employees.index'), icon: IdCardLanyard }
+            { label: 'Manage Users', href: route('users.index'), icon: User },
+            { label: 'Employees', href: route('employees.index'), icon: IdCardLanyard }
         ],
-    },
-    {
-        label: 'Assets',
-        href: route('assets.index'),
-        icon: Boxes,
-        permission: 'manage_assets',
-        // children: [
-        //     { label: 'All Assets', href: '/assets' },
-        //     { label: 'Add Asset', href: '/assets/create' },
-        // ],
     },
     {
         label: 'Categories',
@@ -74,14 +64,14 @@ const menu = [
         permission: 'manage_categories',
     },
     {
-        label: 'Movement',
-        href: route('movements.index'),
-        icon: ArrowLeftRight,
-        permission: 'manage_movement',
-        // children: [
-        //     { label: 'All Movements', href: '/movement' },
-        //     { label: 'Add Movement', href: '/movement/create' },
-        // ],
+        label: 'Assets',
+        href: route('assets.index'),
+        icon: Boxes,
+        permission: 'manage_assets',
+        children: [
+            { label: 'Manage Assets', href: route('assets.index'), icon: Boxes },
+            { label: 'Assignments', href: route('assignments.index'), icon: ArrowLeftRight },
+        ],
     },
     {
         label: 'Reports',

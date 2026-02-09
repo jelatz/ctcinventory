@@ -8,7 +8,7 @@ use App\HTTP\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetController;
-use App\Http\Controllers\MovementController;
+use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CategoryConrtoller;
 
@@ -42,8 +42,8 @@ Route::controller(CategoryConrtoller::class)->prefix('categories')->group(functi
     Route::get('/export/excel', 'export')->name('categories.export');
 });
 
-Route::controller(MovementController::class)->prefix('movements')->group(function () {
-    Route::get('/', 'index')->name('movements.index');
+Route::controller(AssignmentController::class)->prefix('assignments')->group(function () {
+    Route::get('/', 'index')->name('assignments.index');
 });
 
 Route::controller(ReportController::class)->prefix('reports')->group(function () {

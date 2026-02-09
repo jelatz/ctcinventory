@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MovementController extends Controller
+class AssignmentController extends Controller
 {
     public function index()
     {
-        return inertia('Movements');
+        return inertia('Assignments');
     }
 }
