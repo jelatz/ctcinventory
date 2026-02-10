@@ -12,7 +12,7 @@ const confirm = useConfirm()
 const columns = [
     { accessorKey: 'date', header: 'Date' },
     { accessorKey: 'asset', header: 'Asset' },
-    { accessorKey: 'movementType', header: 'Movement Type' },
+    { accessorKey: 'assignmentType', header: 'Assignment Type' },
     { accessorKey: 'from', header: 'From' },
     { accessorKey: 'to', header: 'To' },
     { accessorKey: 'assignedTo', header: 'Assigned To' },
@@ -71,7 +71,7 @@ const {
 } = useOffcanvasForm({
     date: '',
     asset: '',
-    movementType: '',
+    assignmentType: '',
     from: '',
     to: '',
     assignedTo: '',
